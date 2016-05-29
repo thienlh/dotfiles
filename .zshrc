@@ -49,7 +49,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git osx ruby brew docker gradle mvn tmux)
 
 # User configuration
 
@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="atom ~/.zshrc"
 alias ohmyzsh="atom ~/.oh-my-zsh"
 # Register mvim to open MacVim from command line
+alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias mvim="/Applications/MacVim.app/Contents/MacOS/Vim -g"
 alias eclimd="/Applications/Eclipse.app/Contents/Eclipse/eclimd"
 
@@ -97,4 +98,6 @@ export LC_CTYPE=en_US.UTF-8
 DEFAULT_USER="thienle"
 
 ### Screenfetch
-screenfetch | lolcat
+alias info="screenfetch | lolcat"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -273,7 +273,7 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>a :Ack
 
 " auto save on losing focus
-au FocusLost * :wa
+" au FocusLost * :wa
 
 " auto-reload .vimrc file
 augroup reload_vimrc " {
