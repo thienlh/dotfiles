@@ -182,7 +182,7 @@ if has('gui_running')
     elseif has("gui_macvim") " MacOS
         set guifont=Anonymous\ Pro\ for\ Powerline:h14
     elseif has("gui_win32") " Whatever
-        set guifont=Anonymice\ Pro\ for\ Powerline:h12:cANSI
+        set guifont=Anonymice\ Powerline:h12:cANSI
     endif
 endif
 
