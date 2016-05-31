@@ -51,9 +51,6 @@ Plugin 'scrooloose/nerdtree'
 " The NERD commenter
 Plugin 'scrooloose/nerdcommenter'
 
-" Auto code completion
-Plugin 'valloric/youcompleteme'
-
 " Eclim - autocomplete java
 Plugin 'ervandew/eclim'
 " Use eclim with youcompleteme
@@ -68,27 +65,8 @@ Plugin 'raimondi/delimitmate'
 " Supertab
 Bundle 'ervandew/supertab'
 
-"----snippets configurations----
-Plugin 'sirver/ultisnips' " The engine
-Plugin 'honza/vim-snippets' " The actual snippets
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
 " Vim suround
 Plugin 'tpope/vim-surround'
-
-" Tagbar plugin
-Plugin 'majutsushi/tagbar'
-" Config the keyboard shortcut for tagbar
-nmap <F9> :TagbarToggle<CR>
 
 " Ack plugin
 Plugin 'mileszs/ack.vim'
@@ -112,6 +90,31 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
+" Only install those plugin on MacOS
+if !exists("g:os")
+    if has('unix') " whatever!
+        " Auto code completion
+        Plugin 'valloric/youcompleteme'
+        "----snippets configurations----
+        Plugin 'sirver/ultisnips' " The engine
+        Plugin 'honza/vim-snippets' " The actual snippets
+        " make YCM compatible with UltiSnips (using supertab)
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+        let g:SuperTabDefaultCompletionType = '<C-n>'
+        " trigger configuration. Do not use <tab>
+        " if you use https://github.com/Valloric/YouCompleteMe.
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<c-b>"
+        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+        " If you want :UltiSnipsEdit to split your window.
+        " let g:UltiSnipsEditSplit="vertical"
+        " Tagbar plugin
+        Plugin 'majutsushi/tagbar'
+        " Config the keyboard shortcut for tagbar
+        nmap <F9> :TagbarToggle<CR>
+    endif
+endif
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 "
