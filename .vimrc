@@ -27,9 +27,6 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1 " Allow airline to use Powerline patched fonts
 
-" Plugin that set the tmux status bar color using airline/powerline
-Plugin 'edkolev/tmuxline.vim'
-
 " Apprentice colortheme
 Plugin 'romainl/apprentice'
 
@@ -68,9 +65,6 @@ Bundle 'ervandew/supertab'
 " Vim suround
 Plugin 'tpope/vim-surround'
 
-" Ack plugin
-Plugin 'mileszs/ack.vim'
-
 " Visulize vim undo tree
 Plugin 'sjl/gundo.vim'
 " Map the shortcut for toogle Gundo
@@ -92,9 +86,10 @@ Plugin 'nathanaelkane/vim-indent-guides'
 
 " Only install those plugin on MacOS
 if !exists("g:os")
-    if has('unix') " whatever!
+    if has('unix') " Yeah, fuck Windows :V
         " Auto code completion
         Plugin 'valloric/youcompleteme'
+
         "----snippets configurations----
         Plugin 'sirver/ultisnips' " The engine
         Plugin 'honza/vim-snippets' " The actual snippets
@@ -109,10 +104,18 @@ if !exists("g:os")
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
         " If you want :UltiSnipsEdit to split your window.
         " let g:UltiSnipsEditSplit="vertical"
+
         " Tagbar plugin
         Plugin 'majutsushi/tagbar'
         " Config the keyboard shortcut for tagbar
         nmap <F9> :TagbarToggle<CR>
+
+        " Plugin that set the tmux status bar color using airline/powerline
+        Plugin 'edkolev/tmuxline.vim'
+
+        " Ack plugin
+        Plugin 'mileszs/ack.vim'
+
     endif
 endif
 " All of your Plugins must be added before the following line
