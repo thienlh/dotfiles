@@ -84,6 +84,12 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
+" Plugin for developing with Robot framework
+Plugin 'mfukar/robotframework-vim'
+
+" Color picker plugin
+Plugin 'kabbamine/vcoolor.vim'
+
 " Only install those plugin on MacOS
 if !exists("g:os")
     if has('unix') " Yeah, fuck Windows :V
@@ -174,7 +180,7 @@ filetype indent on " automatically indent code
 set modelines=0 " Prevents some security exploits having to do with modeline in files.
 
 " Syntax highlighting
-colorscheme solarized " set color scheme, must be installed first
+colorscheme base16-solarized-dark " set color scheme, must be installed first
 set background=dark " dark background
 syntax enable " enable syntax highlighting
 " characters for displaying non-printable characters
