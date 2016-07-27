@@ -49,11 +49,13 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx ruby brew docker gradle mvn tmux)
+plugins=(git osx ruby brew docker gradle mvn tmux vim)
 
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Path for Postgres command line utility
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

@@ -84,6 +84,9 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
+" papercolor-theme
+Plugin 'NLKNguyen/papercolor-theme'
+
 " Only install those plugin on MacOS
 if !exists("g:os")
     if has('unix') " Yeah, fuck Windows :V
@@ -174,7 +177,7 @@ filetype indent on " automatically indent code
 set modelines=0 " Prevents some security exploits having to do with modeline in files.
 
 " Syntax highlighting
-colorscheme solarized " set color scheme, must be installed first
+colorscheme PaperColor " set color scheme, must be installed first
 set background=dark " dark background
 syntax enable " enable syntax highlighting
 " characters for displaying non-printable characters
@@ -187,6 +190,7 @@ if has('gui_running')
         set guifont=Inconsolata\ 12
     elseif has("gui_macvim") " MacOS
         set guifont=Anonymous\ Pro\ for\ Powerline:h14
+        "        set guifont=Hack:h13
     elseif has("gui_win32") " Whatever
         set guifont=Anonymice\ Powerline:h12:cANSI
     endif
