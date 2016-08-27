@@ -70,9 +70,6 @@ Plugin 'sjl/gundo.vim'
 " Map the shortcut for toogle Gundo
 nnoremap <F10> :GundoToggle<CR>
 
-" Fast file navigation
-Plugin 'git://git.wincent.com/command-t.git'
-
 " A parser for a condensed HTML format
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -84,16 +81,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 
-<<<<<<< HEAD
-" Plugin for developing with Robot framework
-Plugin 'mfukar/robotframework-vim'
-
-" Color picker plugin
-Plugin 'kabbamine/vcoolor.vim'
-=======
 " papercolor-theme
 Plugin 'NLKNguyen/papercolor-theme'
->>>>>>> c4118f616aaa3b99208db12f045484e36d8ba5a7
 
 " Only install those plugin on MacOS
 if !exists("g:os")
@@ -185,11 +174,8 @@ filetype indent on " automatically indent code
 set modelines=0 " Prevents some security exploits having to do with modeline in files.
 
 " Syntax highlighting
-<<<<<<< HEAD
 colorscheme base16-solarized-dark " set color scheme, must be installed first
-=======
 colorscheme PaperColor " set color scheme, must be installed first
->>>>>>> c4118f616aaa3b99208db12f045484e36d8ba5a7
 set background=dark " dark background
 syntax enable " enable syntax highlighting
 " characters for displaying non-printable characters
