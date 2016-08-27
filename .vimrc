@@ -84,6 +84,19 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " papercolor-theme
 Plugin 'NLKNguyen/papercolor-theme'
 
+" javascript bundle for vim
+Plugin 'pangloss/vim-javascript'
+" vim-javascript settings
+" enable syntax highlighting for JSDocs
+let g:javascript_plugin_jsdoc = 1
+" enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well.
+let g:javascript_plugin_ngdoc = 1
+" enable syntax highlighting for Flow
+let g:javascript_plugin_flow = 1
+
+" vim motions on speed!
+Plugin 'easymotion/vim-easymotion'
+
 " Only install those plugin on MacOS
 if !exists("g:os")
     if has('unix') " Yeah, fuck Windows :V
