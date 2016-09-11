@@ -3,82 +3,79 @@
 "
 set nocompatible              " be iMproved
 "
-" --------vundle configurations----------
+" --------------------------vundle configurations--------------------------------
 "
 " set the runtime path to include Vundle and initialize
 if !exists("g:os")
-    if has('win64') || has('win32') || has('win16') " whatever!
+    if has('win64') || has('win32') || has('win16')
+        " sometimes you just have to deal with Windows
         set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
         call vundle#begin('$USERPROFILE/vimfiles/bundle/')
     else
+        " macOS and linux
         set rtp+=~/.vim/bundle/Vundle.vim
         call vundle#begin()
     endif
 endif
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+
 filetype off " required for Vundle, will be on when Vundle is completed
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Vim airline
+" vim airline
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1 " Allow airline to use Powerline patched fonts
+" allow airline to use Powerline patched fonts
+let g:airline_powerline_fonts = 1
 
-" Apprentice colortheme
+" apprentice colortheme
 Plugin 'romainl/apprentice'
 
-" Molokai colortheme
+" molokai colortheme
 Plugin 'tomasr/molokai'
 
-" Solarized colortheme
+" solarized colortheme
 Plugin 'altercation/vim-colors-solarized'
 
-" Base 16 theme
+" base 16 theme
 Plugin 'chriskempson/base16-vim'
 
-" Jellybean theme
+" jellybean theme
 Plugin 'nanotech/jellybeans.vim'
 
-" Tree explorer plugin
+" tree explorer plugin
 Plugin 'scrooloose/nerdtree'
 
-" The NERD commenter
+" the NERD commenter
 Plugin 'scrooloose/nerdcommenter'
-
-" Eclim - autocomplete java
-Plugin 'ervandew/eclim'
-" Use eclim with youcompleteme
-let g:EclimCompletionMethod = 'omnifunc'
 
 " ruby on rails support
 Plugin 'tpope/vim-rails'
 
-" Automatic closing of quotes, parenthesis, brackets, etc.
+" automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'raimondi/delimitmate'
 
-" Supertab
+" supertab
 Bundle 'ervandew/supertab'
 
-" Vim suround
+" vim suround
 Plugin 'tpope/vim-surround'
 
-" Visulize vim undo tree
+" visulize vim undo tree
 Plugin 'sjl/gundo.vim'
-" Map the shortcut for toogle Gundo
+" map the shortcut for toogle Gundo
 nnoremap <F10> :GundoToggle<CR>
 
-" A parser for a condensed HTML format
+" a parser for a condensed HTML format
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" 'A Git wrapper so awesome, it should be illegal'
+" 'a Git wrapper so awesome, it should be illegal'
 Plugin 'tpope/vim-fugitive'
 
-" Indent guide
+" indent guide
 Plugin 'nathanaelkane/vim-indent-guides'
-" To ignore plugin indent changes, instead use:
+" to ignore plugin indent changes, instead use:
 " filetype plugin on
 
 " papercolor-theme
@@ -86,7 +83,15 @@ Plugin 'NLKNguyen/papercolor-theme'
 
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
-" vim-javascript settings
+
+" vorange color-theme
+Plugin 'marfisc/vorange'
+
+" light (& dark) color scheme inspired by iA Writer
+Plugin 'reedes/vim-colors-pencil'
+
+" ----vim-javascript settings----
+
 " enable syntax highlighting for JSDocs
 let g:javascript_plugin_jsdoc = 1
 " enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well.
@@ -97,15 +102,15 @@ let g:javascript_plugin_flow = 1
 " vim motions on speed!
 Plugin 'easymotion/vim-easymotion'
 
-" Only install those plugin on MacOS
+" only for unix-based
 if !exists("g:os")
-    if has('unix') " Yeah, fuck Windows :V
-        " Auto code completion
+    if has('unix')
+        " auto code completion
         Plugin 'valloric/youcompleteme'
 
         "----snippets configurations----
-        Plugin 'sirver/ultisnips' " The engine
-        Plugin 'honza/vim-snippets' " The actual snippets
+        Plugin 'sirver/ultisnips' " the engine
+        Plugin 'honza/vim-snippets' " the actual snippets
         " make YCM compatible with UltiSnips (using supertab)
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -115,53 +120,45 @@ if !exists("g:os")
         let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<c-b>"
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-        " If you want :UltiSnipsEdit to split your window.
+        " if you want :UltiSnipsEdit to split your window.
         " let g:UltiSnipsEditSplit="vertical"
 
-        " Tagbar plugin
+        " tagbar plugin
         Plugin 'majutsushi/tagbar'
-        " Config the keyboard shortcut for tagbar
+        " config the keyboard shortcut for tagbar
         nmap <F9> :TagbarToggle<CR>
 
-        " Plugin that set the tmux status bar color using airline/powerline
+        " plugin that set the tmux status bar color using airline/powerline
         Plugin 'edkolev/tmuxline.vim'
 
-        " Ack plugin
+        " ack plugin
         Plugin 'mileszs/ack.vim'
 
     endif
 endif
-" All of your Plugins must be added before the following line
+
+" all of plugins must be added before the following line
 call vundle#end()            " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" ----------------vundle configurations end--------------
-" ----------------my settings----------------------------
-" Display settings
+" -------------------------vundle configurations end-----------------------------
+
+" ---------------------------------my settings-----------------------------------
+" display settings
 set encoding=utf-8 " encoding used for displaying file
 set ruler " show the cursor position all the time
 set showmatch " highlight matching braces
 set showmode " show insert/replace/visual mode
-set t_Co=256 " Advertising: This emulator is capable of display 256 colors
+set t_Co=256 " advertising: This emulator is capable of display 256 colors
+set laststatus=2 " always display the statusline in all windows
+set wrap  " always wrap long lines
+set guioptions-=r " hide the right scroll bar
+set guioptions-=L " hide the left scroll bar
 
-set laststatus=2 " Always display the statusline in all windows
-set wrap  " Always wrap long lines
-set guioptions-=r " Hide the right scroll bar
-set guioptions-=L " Hide the left scroll bar
-
-" Write settings
+" write settings
 set confirm " confirm :q in case of unsaved changes
 set fileencoding=utf-8 " encoding used when saving file
 set nobackup " do not keep the backup~ file
 
-" Edit settings
+" edit settings
 set backspace=indent,eol,start " backspacing over everything in insert mode
 set expandtab " fill tabs with spaces
 set nojoinspaces " no extra space after '.' when joining lines
@@ -169,52 +166,54 @@ set shiftwidth=4 " set indentation depth to 8 columns
 set softtabstop=4 " backspacing over 8 spaces like over tabs
 set tabstop=4 " set tabulator length to 8 columns
 " set textwidth=80 " wrap lines automatically at 100th column
-set relativenumber " Show line number on the left as relative to current line
+set relativenumber " show line number on the left as relative to current line
 set undofile " undofile tells Vim to create <FILENAME>.un~ files whenever you
 " edit a file. These files contain undo information so you can
 " undo previous actions even after you close and reopen a file.
 
-" Search settings
+" search settings
 set hlsearch " highlight search results
 set ignorecase " do case insensitive search...
 set incsearch " do incremental search
 set smartcase " ...unless capital letters are used
 
-" File type specific settings
+" file type specific settings
 filetype on " enable file type detection
 filetype plugin on " load the plugins for specific file types
 filetype indent on " automatically indent code
-set modelines=0 " Prevents some security exploits having to do with modeline in files.
+set modelines=0 " prevents some security exploits having to do with modeline in files.
 
-" Syntax highlighting
+" syntax highlighting
 colorscheme base16-solarized-dark " set color scheme, must be installed first
-colorscheme PaperColor " set color scheme, must be installed first
+colorscheme vorange " set color scheme, must be installed first
 set background=dark " dark background
 syntax enable " enable syntax highlighting
 " characters for displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
 
-" Tuning for gVim base on OSs
+" tuning for gVim base on OSs
 if has('gui_running')
     set number " show line numbers
-    if has("gui_gtk2") " Linux
-        set guifont=Inconsolata\ 12
-    elseif has("gui_macvim") " MacOS
+    if has("gui_gtk2") " linux
+        set guifont=Inconsolata:h12
+        let g:airline_powerline_fonts = 0
+    elseif has("gui_macvim") " macOS
         set guifont=Anonymous\ Pro\ for\ Powerline:h14
         "        set guifont=Hack:h13
-    elseif has("gui_win32") " Whatever
+    elseif has("gui_win32") " whatever
         set guifont=Anonymice\ Powerline:h12:cANSI
+        let g:airline_powerline_fonts = 0
     endif
 endif
 
-" Automatic commands
+" automatic commands
 if has('autocmd')
     " file type specific automatic commands
     " tuning textwidth for Java code
-    "autocmd FileType java setlocal textwidth=132
-    "if has('gui_running')
-    "autocmd FileType java setlocal columns=136
-    "endif
+    " autocmd FileType java setlocal textwidth=132
+    " if has('gui_running')
+    " autocmd FileType java setlocal columns=136
+    " endif
     " don't replace Tabs with spaces when editing makefiles
     autocmd Filetype makefile setlocal noexpandtab
     " disable automatic code indentation when editing TeX and XML files
@@ -228,7 +227,7 @@ if has('autocmd')
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
-" General key mappings
+" general key mappings
 " center view on the search result
 noremap n nzz
 noremap N Nzz
@@ -249,7 +248,7 @@ inoremap <F8> <Esc>:nohl<CR>a
 noremap <F12> :set list!<CR>
 inoremap <F12> <Esc>:set list!<CR>a
 
-" Remap the <Leader> and set it's timeout
+" remap the <Leader> and set it's timeout
 let mapleader=","
 set timeout timeoutlen=1500
 
@@ -301,4 +300,4 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-" ---------EOF---------
+" ------------------------------------EOF----------------------------------------
