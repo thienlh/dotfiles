@@ -201,7 +201,7 @@ if has('gui_running')
         set guifont=Anonymous\ Pro\ for\ Powerline:h14
         "        set guifont=Hack:h13
     elseif has("gui_win32") " whatever
-        set guifont=Anonymice\ Powerline:h12:cANSI
+        set guifont=Consolas:h10:cANSI
         let g:airline_powerline_fonts = 0
     endif
 endif
