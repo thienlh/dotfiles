@@ -1,7 +1,12 @@
+"  __   __   __     __    __     ______     ______
+" /\ \ / /  /\ \   /\ "-./  \   /\  == \   /\  ___\
+" \ \ \'/   \ \ \  \ \ \-./\ \  \ \  __<   \ \ \____
+"  \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\
+"   \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/
 "
-"   this is Le Hung Thien's .vimrc
+"           this is Le Hung Thien's .vimrc
 "
-set nocompatible              " be iMproved
+set nocompatible " be the IMproved
 "
 " --------------------------vundle configurations--------------------------------
 "
@@ -26,8 +31,7 @@ Plugin 'VundleVim/Vundle.vim'
 " vim airline
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-" allow airline to use Powerline patched fonts
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1 " allow airline to use Powerline patched fonts
 
 " apprentice colortheme
 Plugin 'romainl/apprentice'
@@ -64,7 +68,6 @@ Plugin 'tpope/vim-surround'
 
 " visulize vim undo tree
 Plugin 'sjl/gundo.vim'
-" map the shortcut for toogle Gundo
 nnoremap <F10> :GundoToggle<CR>
 
 " a parser for a condensed HTML format
@@ -84,48 +87,48 @@ Plugin 'NLKNguyen/papercolor-theme'
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
 
+let g:javascript_plugin_jsdoc = 1 " enable syntax highlighting for JSDocs
+let g:javascript_plugin_ngdoc = 1 " enables some additional syntax highlighting for NGDocs.
+let g:javascript_plugin_flow = 1  " enable syntax highlighting for Flow
+
 " vorange color-theme
 Plugin 'marfisc/vorange'
 
 " light (& dark) color scheme inspired by iA Writer
 Plugin 'reedes/vim-colors-pencil'
 
-" ----vim-javascript settings----
-
-" enable syntax highlighting for JSDocs
-let g:javascript_plugin_jsdoc = 1
-" enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin to be enabled as well.
-let g:javascript_plugin_ngdoc = 1
-" enable syntax highlighting for Flow
-let g:javascript_plugin_flow = 1
-
 " vim motions on speed!
 Plugin 'easymotion/vim-easymotion'
 
-" only for unix-based
+" true fuzzy find.
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" unix-based only
 if !exists("g:os")
     if has('unix')
         " auto code completion
         Plugin 'valloric/youcompleteme'
 
-        "----snippets configurations----
-        Plugin 'sirver/ultisnips' " the engine
+        " snippets configurations
+        Plugin 'sirver/ultisnips'   " the engine
         Plugin 'honza/vim-snippets' " the actual snippets
+
         " make YCM compatible with UltiSnips (using supertab)
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
         let g:SuperTabDefaultCompletionType = '<C-n>'
+
         " trigger configuration. Do not use <tab>
         " if you use https://github.com/Valloric/YouCompleteMe.
         let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<c-b>"
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
         " if you want :UltiSnipsEdit to split your window.
         " let g:UltiSnipsEditSplit="vertical"
 
         " tagbar plugin
         Plugin 'majutsushi/tagbar'
-        " config the keyboard shortcut for tagbar
         nmap <F9> :TagbarToggle<CR>
 
         " plugin that set the tmux status bar color using airline/powerline
@@ -133,74 +136,97 @@ if !exists("g:os")
 
         " ack plugin
         Plugin 'mileszs/ack.vim'
-
     endif
 endif
 
 " all of plugins must be added before the following line
 call vundle#end()            " required
-" -------------------------vundle configurations end-----------------------------
 
-" ---------------------------------my settings-----------------------------------
+" ---------------------------------personal settings-----------------------------------
 " display settings
-set encoding=utf-8 " encoding used for displaying file
-set ruler " show the cursor position all the time
-set showmatch " highlight matching braces
-set showmode " show insert/replace/visual mode
-set t_Co=256 " advertising: This emulator is capable of display 256 colors
-set laststatus=2 " always display the statusline in all windows
-set wrap  " always wrap long lines
-set guioptions-=r " hide the right scroll bar
-set guioptions-=L " hide the left scroll bar
+set encoding=utf-8  " encoding used for displaying file
+set ruler           " show the cursor position all the time
+set showmatch       " highlight matching braces
+set showmode        " show insert/replace/visual mode
+set t_Co=256        " tell the world that this emulator is capable of display 256 colors
+set laststatus=2    " always display the statusline in all windows
+set wrap            " always wrap long lines
+set guioptions-=r   " hide the right scroll bar
+set guioptions-=L   " hide the left scroll bar
+set foldenable      " enable code folding
 
-" write settings
-set confirm " confirm :q in case of unsaved changes
-set fileencoding=utf-8 " encoding used when saving file
-set nobackup " do not keep the backup~ file
+" read/write settings
+set confirm                         " confirm :q in case of unsaved changes
+set fileencoding=utf-8              " encoding used when saving file
+set undofile                        " keep the undo files
+set backup                          " keep the backup~ file
+set noswapfile                      " it's <insert current year>, vim!
+set undodir=~/.vim/tmp/undo//       " undo files folder
+set backupdir=~/.vim/tmp/backup//   " backups folder
+set directory=~/.vim/tmp/swap//     " swap files folder
+" make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+" when a file has been detected to have been changed outside of Vim and
+" it has not been changed inside of Vim, automatically read it again.
+set autoread
+" write the contents of the file, if it has been modified, on each
+" :next, :rewind, :last, :first, :previous, :stop, :suspend, :tag, :!,
+" :make, CTRL-] and CTRL-^ command; and when a :buffer, CTRL-O, CTRL-I,
+" '{A-Z0-9}, or `{A-Z0-9} command takes one to another file.
+set autowrite
+" auto save on losing focus
+au FocusLost * :wa
 
 " edit settings
-set backspace=indent,eol,start " backspacing over everything in insert mode
-set expandtab " fill tabs with spaces
-set nojoinspaces " no extra space after '.' when joining lines
-set shiftwidth=4 " set indentation depth to 8 columns
-set softtabstop=4 " backspacing over 8 spaces like over tabs
-set tabstop=4 " set tabulator length to 8 columns
-" set textwidth=80 " wrap lines automatically at 100th column
-set relativenumber " show line number on the left as relative to current line
-set undofile " undofile tells Vim to create <FILENAME>.un~ files whenever you
-" edit a file. These files contain undo information so you can
-" undo previous actions even after you close and reopen a file.
+set backspace=indent,eol,start  " backspacing over everything in insert mode
+set expandtab                   " fill tabs with spaces
+set nojoinspaces                " no extra space after '.' when joining lines
+set shiftwidth=4                " set indentation depth to 8 columns
+set softtabstop=4               " backspacing over 8 spaces like over tabs
+set tabstop=4                   " set tabulator length to 8 columns
+" set textwidth=80              " wrap lines automatically at <number>th column
+set relativenumber              " show line number as relative to current line
 
 " search settings
-set hlsearch " highlight search results
-set ignorecase " do case insensitive search...
-set incsearch " do incremental search
-set smartcase " ...unless capital letters are used
+set hlsearch    " highlight search results
+set incsearch   " do incremental search
+set ignorecase  " do case insensitive search...
+set smartcase   " ...unless capital letters are used
 
 " file type specific settings
-filetype on " enable file type detection
-filetype plugin on " load the plugins for specific file types
-filetype indent on " automatically indent code
-set modelines=0 " prevents some security exploits having to do with modeline in files.
+filetype on         " enable file type detection
+filetype plugin on  " load the plugins for specific file types
+filetype indent on  " automatically indent code
+set modelines=0     " prevents some security exploits having to do with modeline in files.
 
 " syntax highlighting
-colorscheme base16-solarized-dark " set color scheme, must be installed first
 colorscheme vorange " set color scheme, must be installed first
 set background=dark " dark background
-syntax enable " enable syntax highlighting
+syntax enable       " enable syntax highlighting
 " characters for displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
+" don't try to highlight lines longer than 800 characters.
+set synmaxcol=800
+" highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " tuning for gVim base on OSs
 if has('gui_running')
-    set number " show line numbers
-    if has("gui_gtk2") " linux
+    set number                  " show line numbers
+    if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
         let g:airline_powerline_fonts = 0
-    elseif has("gui_macvim") " macOS
+    elseif has("gui_macvim")    " macvim
         set guifont=Anonymous\ Pro\ for\ Powerline:h14
-        "        set guifont=Hack:h13
-    elseif has("gui_win32") " whatever
+    elseif has("gui_win32")     " windows
         set guifont=Consolas:h10:cANSI
         let g:airline_powerline_fonts = 0
     endif
@@ -292,8 +318,20 @@ nnoremap <C-l> <C-w>l
 " map a key for Ack
 nnoremap <leader>a :Ack
 
-" auto save on losing focus
-" au FocusLost * :wa
+" split line (sister to [J]oin lines)
+" the normal usage of S is reproducable with cc which is the same amount of keystrokes.
+nnoremap S i<cr><esc><right>
+
+" bubble single lines
+" due to macOS keybinding of the C-Up key, chose to remap to C-k and so forth.
+nmap <C-k> ddkP
+nmap <C-j> ddp
+" bubble multiple lines
+vmap <C-k> xkP`[V`]
+vmap <C-j> xp`[V`]
+
+" clear the search buffer when hitting return
+nnoremap <CR> :nohlsearch<cr>
 
 " auto-reload .vimrc file
 augroup reload_vimrc " {
