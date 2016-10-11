@@ -8,7 +8,7 @@
 "
 set nocompatible " be the IMproved
 "
-" --------------------------vundle configurations--------------------------------
+" -----------------------------vundle configurations-----------------------------------
 "
 " set the runtime path to include Vundle and initialize
 if !exists("g:os")
@@ -102,6 +102,9 @@ Plugin 'easymotion/vim-easymotion'
 
 " true fuzzy find.
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" hybrid color theme
+Plugin 'w0ng/vim-hybrid'
 
 " unix-based only
 if !exists("g:os")
@@ -208,7 +211,7 @@ filetype indent on  " automatically indent code
 set modelines=0     " prevents some security exploits having to do with modeline in files.
 
 " syntax highlighting
-colorscheme vorange " set color scheme, must be installed first
+colorscheme hybrid  " set color scheme, must be installed first
 set background=dark " dark background
 syntax enable       " enable syntax highlighting
 " characters for displaying non-printable characters
@@ -338,4 +341,4 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-" ------------------------------------EOF----------------------------------------
+" -------------------------------------the end-----------------------------------------
