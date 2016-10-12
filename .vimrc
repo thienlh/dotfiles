@@ -53,6 +53,8 @@ Plugin 'scrooloose/nerdtree'
 
 " the NERD commenter
 Plugin 'scrooloose/nerdcommenter'
+" add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 " ruby on rails support
 Plugin 'tpope/vim-rails'
@@ -76,10 +78,8 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " 'a Git wrapper so awesome, it should be illegal'
 Plugin 'tpope/vim-fugitive'
 
-" indent guide
-Plugin 'nathanaelkane/vim-indent-guides'
-" to ignore plugin indent changes, instead use:
-" filetype plugin on
+" A vim plugin to display the indention levels with thin vertical lines
+Plugin 'yggdroot/indentline'
 
 " papercolor-theme
 Plugin 'NLKNguyen/papercolor-theme'
@@ -105,6 +105,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 " hybrid color theme
 Plugin 'w0ng/vim-hybrid'
+
+" emmet for vim
+Plugin 'mattn/emmet-vim'
 
 " unix-based only
 if !exists("g:os")
