@@ -1,8 +1,8 @@
-"    __   __   __     __    __     ______     ______
-"   /\ \ / /  /\ \   /\ "-./  \   /\  == \   /\  ___\
-"   \ \ \'/   \ \ \  \ \ \-./\ \  \ \  __<   \ \ \____
-"    \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\
-"     \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/
+"  __   __   __     __    __     ______     ______
+" /\ \ / /  /\ \   /\ "-./  \   /\  == \   /\  ___\
+" \ \ \'/   \ \ \  \ \ \-./\ \  \ \  __<   \ \ \____
+"  \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\
+"   \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/
 "
 "           this is Le Hung Thien's .vimrc
 "
@@ -62,7 +62,7 @@ Plugin 'tpope/vim-rails'
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'raimondi/delimitmate'
 
-" supertab
+" perform all your vim insert mode completions with <Tab>
 Bundle 'ervandew/supertab'
 
 " vim suround
@@ -86,7 +86,6 @@ Plugin 'NLKNguyen/papercolor-theme'
 
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
-
 let g:javascript_plugin_jsdoc = 1 " enable syntax highlighting for JSDocs
 let g:javascript_plugin_ngdoc = 1 " enables some additional syntax highlighting for NGDocs.
 let g:javascript_plugin_flow = 1  " enable syntax highlighting for Flow
@@ -100,7 +99,7 @@ Plugin 'reedes/vim-colors-pencil'
 " vim motions on speed!
 Plugin 'easymotion/vim-easymotion'
 
-" true fuzzy find.
+" active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " hybrid color theme
@@ -109,7 +108,7 @@ Plugin 'w0ng/vim-hybrid'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
-" vim: Hard mode
+" vim: hard mode
 Plugin 'wikitopian/hardmode'
 " enable the hard mode by default
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
@@ -194,7 +193,7 @@ set autoread
 " '{A-Z0-9}, or `{A-Z0-9} command takes one to another file.
 set autowrite
 " auto save on losing focus
-" au FocusLost * :wa
+au FocusLost * :wa
 
 " edit settings
 set backspace=indent,eol,start  " backspacing over everything in insert mode
@@ -288,18 +287,6 @@ inoremap <F12> <Esc>:set list!<CR>a
 " remap the <Leader> and set it's timeout
 let mapleader=","
 set timeout timeoutlen=1500
-
-" " disable the arrow keys while in normal mode to help you learn to use hjkl.
-" " also disables the arrow keys in insert mode to force you to get back into normal
-" " mode the instant you’re done inserting text, which is the RIGHT WAY to do things.
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
 
 " makes j and k work the way you expect instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
