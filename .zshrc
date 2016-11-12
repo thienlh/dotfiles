@@ -101,7 +101,6 @@ DEFAULT_USER="thienle"
 
 ### Screenfetch
 alias info="screenfetch | lolcat"
-alias weather="curl http://wttr.in/HoChiMinh"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
