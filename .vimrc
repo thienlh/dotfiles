@@ -108,10 +108,8 @@ Plugin 'w0ng/vim-hybrid'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
-" vim: hard mode
-Plugin 'wikitopian/hardmode'
-" enable the hard mode by default
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" text outlining and task management for vim based on emacs’ org-mode.
+Plugin 'jceb/vim-orgmode'
 
 " unix-based only
 if !exists("g:os")
@@ -217,9 +215,6 @@ filetype plugin on  " load the plugins for specific file types
 filetype indent on  " automatically indent code
 set modelines=0     " prevents some security exploits having to do with modeline in files.
 
-" syntax highlighting
-colorscheme hybrid  " set color scheme, must be installed first
-set background=dark " dark background
 syntax enable       " enable syntax highlighting
 " characters for displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
@@ -231,6 +226,9 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " tuning for gVim base on OSs
 if has('gui_running')
     set number                  " show line numbers
+    " syntax highlighting
+    colorscheme vorange  " set color scheme, must be installed first
+    set background=dark " dark background
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
         let g:airline_powerline_fonts = 0
