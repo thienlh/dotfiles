@@ -99,9 +99,6 @@ export LC_CTYPE=en_US.UTF-8
 ### Set default user so there will be no thienle@Thien-Le-Macbook-Air blah blah
 DEFAULT_USER="thienle"
 
-### Screenfetch
-alias info="screenfetch | lolcat"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 fortune | cowsay | lolcat
