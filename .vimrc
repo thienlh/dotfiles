@@ -29,7 +29,7 @@ if !exists("g:os")
     endif
 endif
 
-filetype off " required for Vundle, will be on when Vundle is completed
+filetype off " required, will be on again when Vundle is completed
 
 "
 " ┬─┐┬  ┬ ┐┌─┐o┌┐┐┐─┐
@@ -37,28 +37,25 @@ filetype off " required for Vundle, will be on when Vundle is completed
 " ┆  ┆─┘┆─┘┆─┘┆┆└┘──┘
 "
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"█▓▒░ let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim' " required
+
+"█▓▒░ color themes
+Plugin 'marfisc/vorange'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'romainl/apprentice'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'xero/sourcerer.vim'
 
 " vim airline
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1 " allow airline to use Powerline patched fonts
-
-" apprentice colortheme
-Plugin 'romainl/apprentice'
-
-" molokai colortheme
-Plugin 'tomasr/molokai'
-
-" solarized colortheme
-Plugin 'altercation/vim-colors-solarized'
-
-" base 16 theme
-Plugin 'chriskempson/base16-vim'
-
-" jellybean theme
-Plugin 'nanotech/jellybeans.vim'
+let g:airline_powerline_fonts = 1 " use powerline patched fonts
 
 " tree explorer plugin
 Plugin 'scrooloose/nerdtree'
@@ -74,7 +71,7 @@ Plugin 'tpope/vim-rails'
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'raimondi/delimitmate'
 
-" perform all your vim insert mode completions with <Tab>
+" perform all your vim insert mode completions with <tab>
 Bundle 'ervandew/supertab'
 
 " vim suround
@@ -87,41 +84,26 @@ nnoremap <F10> :GundoToggle<CR>
 " a parser for a condensed HTML format
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" 'a Git wrapper so awesome, it should be illegal'
+" 'a git wrapper so awesome, it should be illegal'
 Plugin 'tpope/vim-fugitive'
 
-" A vim plugin to display the indention levels with thin vertical lines
+" display the indention levels with thin vertical lines
 Plugin 'yggdroot/indentline'
-
-" papercolor-theme
-Plugin 'NLKNguyen/papercolor-theme'
 
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
-let g:javascript_plugin_jsdoc = 1 " enable syntax highlighting for JSDocs
-let g:javascript_plugin_ngdoc = 1 " enables some additional syntax highlighting for NGDocs.
-let g:javascript_plugin_flow = 1  " enable syntax highlighting for Flow
-
-" vorange color-theme
-Plugin 'marfisc/vorange'
-
-" light (& dark) color scheme inspired by ia writer
-Plugin 'reedes/vim-colors-pencil'
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
 
 " vim motions on speed!
 Plugin 'easymotion/vim-easymotion'
 
-" active fork of kien/ctrlp.vim—Fuzzy file, buffer, mru, tag, etc finder.
+" active fork of kien/ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
-
-" hybrid color theme
-Plugin 'w0ng/vim-hybrid'
 
 " emmet for vim
 Plugin 'mattn/emmet-vim'
-
-" awesome theme from xero
-Plugin 'xero/sourcerer.vim'
 
 " unix-based only
 if !exists("g:os")
@@ -133,33 +115,27 @@ if !exists("g:os")
         Plugin 'sirver/ultisnips'   " the engine
         Plugin 'honza/vim-snippets' " the actual snippets
 
-        " make YCM compatible with UltiSnips (using supertab)
+        " make youcompleteme compatible with ultisnips and supertab
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
         let g:SuperTabDefaultCompletionType = '<C-n>'
-
-        " trigger configuration. Do not use <tab>
-        " if you use https://github.com/Valloric/YouCompleteMe.
-        let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<c-b>"
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-        " if you want :UltiSnipsEdit to split your window.
-        " let g:UltiSnipsEditSplit='vertical'
 
         " tagbar plugin
         Plugin 'majutsushi/tagbar'
         nmap <F9> :TagbarToggle<CR>
 
-        " plugin that set the tmux status bar color using airline/powerline
+        " set the tmux status bar color using airline/powerline
         Plugin 'edkolev/tmuxline.vim'
 
         " ack plugin
         Plugin 'mileszs/ack.vim'
+        nnoremap <leader>a :Ack
     endif
 endif
 
-" all of plugins must be added before the following line
+"█▓▒░ all of plugins must be added before the following line
 call vundle#end()            " required
 
 " ┬─┐┬─┐┬─┐┐─┐┌─┐┌┐┐┬─┐┬    ┐─┐┬─┐┌┐┐┌┐┐o┌┐┐┌─┐┐─┐
@@ -171,7 +147,7 @@ set encoding=utf-8  " encoding used for displaying file
 set ruler           " show the cursor position all the time
 set showmatch       " highlight matching braces
 set showmode        " show insert/replace/visual mode
-set t_Co=256        " tell the world that this emulator is capable of display 256 colors
+set t_Co=256        " capable of displaying 256 colors
 set laststatus=2    " always display the statusline in all windows
 set wrap            " always wrap long lines
 set guioptions-=r   " hide the right scroll bar
@@ -179,11 +155,11 @@ set guioptions-=L   " hide the left scroll bar
 set foldenable      " enable code folding
 
 "█▓▒░ read/write settings
-set confirm                         " confirm :q in case of unsaved changes
+set confirm                         " confirm :q for unsaved changes
 set fileencoding=utf-8              " encoding used when saving file
 set undofile                        " keep the undo files
 set backup                          " keep the backup~ file
-set noswapfile                      " it's <insert current year>, vim!
+set noswapfile                      " it's <current year>, vim!
 set undodir=~/.vim/tmp/undo//       " undo files folder
 set backupdir=~/.vim/tmp/backup//   " backups folder
 set directory=~/.vim/tmp/swap//     " swap files folder
@@ -197,25 +173,19 @@ endif
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
-" when a file has been detected to have been changed outside of Vim and
-" it has not been changed inside of Vim, automatically read it again.
+
 set autoread
-" write the contents of the file, if it has been modified, on each
-" :next, :rewind, :last, :first, :previous, :stop, :suspend, :tag, :!,
-" :make, CTRL-] and CTRL-^ command; and when a :buffer, CTRL-O, CTRL-I,
-" '{A-Z0-9}, or `{A-Z0-9} command takes one to another file.
 set autowrite
-" auto save on losing focus
 au FocusLost * :wa
 
 "█▓▒░ edit settings
-set backspace=indent,eol,start  " backspacing over everything in insert mode
+set backspace=indent,eol,start  " backspacing over everything
 set expandtab                   " fill tabs with spaces
-set nojoinspaces                " no extra space after '.' when joining lines
-set shiftwidth=4                " set indentation depth to 8 columns
-set softtabstop=4               " backspacing over 8 spaces like over tabs
-set tabstop=4                   " set tabulator length to 8 columns
-set relativenumber              " show line number as relative to current line
+set nojoinspaces                " no space after '.' when joining
+set shiftwidth=4                " set indentation depth to 4 columns
+set softtabstop=4               " backspacing over 4 spaces
+set tabstop=4                   " set tabulator length to 4 columns
+set relativenumber              " show relative line number
 
 "█▓▒░ search settings
 set hlsearch    " highlight search results
@@ -223,13 +193,12 @@ set incsearch   " do incremental search
 set ignorecase  " do case insensitive search...
 set smartcase   " ...unless capital letters are used
 
-"█▓▒░ file type specific settings
+"█▓▒░ other settings
 filetype on         " enable file type detection
 filetype plugin on  " load the plugins for specific file types
 filetype indent on  " automatically indent code
-set modelines=0     " prevents some security exploits having to do with modeline in files.
 syntax enable       " enable syntax highlighting
-" characters for displaying non-printable characters
+" displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
 " don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
@@ -239,7 +208,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 "█▓▒░ tuning for gvim base on os
 if has('gui_running')
     set number                  " show line numbers
-    colorscheme pencil          " set color scheme, must be installed first
+    colorscheme pencil          " set color scheme
     set background=dark         " dark background
 
     if has("gui_gtk2")          " linux
@@ -255,14 +224,16 @@ endif
 
 "█▓▒░ automatic commands
 if has('autocmd')
-    " don't replace Tabs with spaces when editing makefiles
+    " don't replace tabs with spaces when editing makefiles
     autocmd Filetype makefile setlocal noexpandtab
-    " disable automatic code indentation when editing TeX and XML files
+    " disable automatic code indentation for TeX and XML files
     autocmd FileType tex,xml setlocal indentexpr=
-    " clean-up commands that run automatically on write; use with caution
+    " clean-up commands that run automatically on write
+    " USE WITH CAUTIOn
     " delete empty or whitespaces-only lines at the end of file
     autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
-    " replace groups of empty or whitespaces-only lines with one empty line
+    " replace groups of empty or whitespaces-only lines
+    " with an empty line
     autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge
     " delete any trailing whitespaces
     autocmd BufWritePre * :%s/\s\+$//ge
@@ -278,17 +249,14 @@ endif
 noremap n nzz
 noremap N Nzz
 
-" press f4 to fix indentation in whole file; overwrites marker 'q' position
+" F4 to fix indentation in whole file
 noremap <F4> mqggVG=`qzz
+" overwrites marker 'q' position
 inoremap <F4> <Esc>mqggVG=`qzza
 
-" press f5 to sort selection or paragraph
+" F5 to sort selection or paragraph
 vnoremap <F5> :sort i<CR>
 nnoremap <F5> Vip:sort i<CR>
-
-" press f8 to turn the search results highlight off
-noremap <F8> :nohl<CR>
-inoremap <F8> <Esc>:nohl<CR>a
 
 " press f12 to toggle showing the non-printable charactes
 noremap <F12> :set list!<CR>
@@ -298,7 +266,8 @@ inoremap <F12> <Esc>:set list!<CR>a
 let mapleader=","
 set timeout timeoutlen=1500
 
-" makes j and k work the way you expect instead of working in some archaic
+" makes j and k work the way you expect
+" instead of working in some archaic
 " 'movement by file line instead of screen line' fashion.
 nnoremap j gj
 nnoremap k gk
@@ -312,7 +281,7 @@ vnoremap <F1> <ESC>
 " re-select the text that was just pasted (to perform actions on it)
 nnoremap <leader>v V`]
 
-" quickly open up my ~/.vimrc file in a vertically split window
+" quickly open up ~/.vimrc file in a vertically split window
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 " open a new split window and switch over to it
@@ -324,15 +293,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" map a key for Ack
-nnoremap <leader>a :Ack
-
-" split line (sister to [J]oin lines)
-" the normal usage of S is reproducable with cc which is the same amount of keystrokes.
+" [S]plit line (sister to [J]oin lines)
 nnoremap S i<cr><esc><right>
 
 " bubble single lines
-" due to macOS keybinding of the C-Up key, chose to remap to C-k and so forth.
 nmap <C-k> ddkP
 nmap <C-j> ddp
 " bubble multiple lines
@@ -342,7 +306,7 @@ vmap <C-j> xp`[V`]
 " clear the search buffer when hitting return
 nnoremap <CR> :nohlsearch<cr>
 
-" auto-reload .vimrc file
+"█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
