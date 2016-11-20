@@ -4,12 +4,18 @@
 "  \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\
 "   \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/
 "
-"           this is Le Hung Thien's .vimrc
+"█▓▒░ this is Le Hung Thien's .vimrc
 "
 set nocompatible " be the IMproved
+set modelines=0  " security
+set hidden       " hide buffers, not close them
+
 "
-" -------------------vundle configurations-------------------
+" ┐ ┬┬ ┐┌┐┐┬─┐┬  ┬─┐
+" │┌┘│ │││││ ││  ├─
+" └┘ ┆─┘┆└┘┆─┘┆─┘┴─┘
 "
+
 " set the runtime path to include Vundle and initialize
 if !exists("g:os")
     if has('win64') || has('win32') || has('win16')
@@ -24,6 +30,12 @@ if !exists("g:os")
 endif
 
 filetype off " required for Vundle, will be on when Vundle is completed
+
+"
+" ┬─┐┬  ┬ ┐┌─┐o┌┐┐┐─┐
+" │─┘│  │ ││ ┬││││└─┐
+" ┆  ┆─┘┆─┘┆─┘┆┆└┘──┘
+"
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -93,7 +105,7 @@ let g:javascript_plugin_flow = 1  " enable syntax highlighting for Flow
 " vorange color-theme
 Plugin 'marfisc/vorange'
 
-" light (& dark) color scheme inspired by iA Writer
+" light (& dark) color scheme inspired by ia writer
 Plugin 'reedes/vim-colors-pencil'
 
 " vim motions on speed!
@@ -108,8 +120,8 @@ Plugin 'w0ng/vim-hybrid'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
-" text outlining and task management for vim based on emacs’ org-mode.
-Plugin 'jceb/vim-orgmode'
+" awesome theme from xero
+Plugin 'xero/sourcerer.vim'
 
 " unix-based only
 if !exists("g:os")
@@ -133,7 +145,7 @@ if !exists("g:os")
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
         " if you want :UltiSnipsEdit to split your window.
-        " let g:UltiSnipsEditSplit="vertical"
+        " let g:UltiSnipsEditSplit='vertical'
 
         " tagbar plugin
         Plugin 'majutsushi/tagbar'
@@ -150,8 +162,11 @@ endif
 " all of plugins must be added before the following line
 call vundle#end()            " required
 
-" ---------------------personal settings---------------------
-" display settings
+" ┬─┐┬─┐┬─┐┐─┐┌─┐┌┐┐┬─┐┬    ┐─┐┬─┐┌┐┐┌┐┐o┌┐┐┌─┐┐─┐
+" │─┘├─ │┬┘└─┐│ │││││─┤│    └─┐├─  │  │ │││││ ┬└─┐
+" ┆  ┴─┘┆└┘──┘┘─┘┆└┘┘ ┆┆─┘  ──┘┴─┘ ┆  ┆ ┆┆└┘┆─┘──┘
+
+"█▓▒░ interface settings
 set encoding=utf-8  " encoding used for displaying file
 set ruler           " show the cursor position all the time
 set showmatch       " highlight matching braces
@@ -163,7 +178,7 @@ set guioptions-=r   " hide the right scroll bar
 set guioptions-=L   " hide the left scroll bar
 set foldenable      " enable code folding
 
-" read/write settings
+"█▓▒░ read/write settings
 set confirm                         " confirm :q in case of unsaved changes
 set fileencoding=utf-8              " encoding used when saving file
 set undofile                        " keep the undo files
@@ -193,28 +208,26 @@ set autowrite
 " auto save on losing focus
 au FocusLost * :wa
 
-" edit settings
+"█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything in insert mode
 set expandtab                   " fill tabs with spaces
 set nojoinspaces                " no extra space after '.' when joining lines
 set shiftwidth=4                " set indentation depth to 8 columns
 set softtabstop=4               " backspacing over 8 spaces like over tabs
 set tabstop=4                   " set tabulator length to 8 columns
-" set textwidth=80              " wrap lines automatically at <number>th column
 set relativenumber              " show line number as relative to current line
 
-" search settings
+"█▓▒░ search settings
 set hlsearch    " highlight search results
 set incsearch   " do incremental search
 set ignorecase  " do case insensitive search...
 set smartcase   " ...unless capital letters are used
 
-" file type specific settings
+"█▓▒░ file type specific settings
 filetype on         " enable file type detection
 filetype plugin on  " load the plugins for specific file types
 filetype indent on  " automatically indent code
 set modelines=0     " prevents some security exploits having to do with modeline in files.
-
 syntax enable       " enable syntax highlighting
 " characters for displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
@@ -223,12 +236,12 @@ set synmaxcol=800
 " highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" tuning for gVim base on OSs
+"█▓▒░ tuning for gvim base on os
 if has('gui_running')
     set number                  " show line numbers
-    " syntax highlighting
-    colorscheme vorange  " set color scheme, must be installed first
-    set background=dark " dark background
+    colorscheme pencil          " set color scheme, must be installed first
+    set background=dark         " dark background
+
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
         let g:airline_powerline_fonts = 0
@@ -240,14 +253,8 @@ if has('gui_running')
     endif
 endif
 
-" automatic commands
+"█▓▒░ automatic commands
 if has('autocmd')
-    " file type specific automatic commands
-    " tuning textwidth for Java code
-    " autocmd FileType java setlocal textwidth=132
-    " if has('gui_running')
-    " autocmd FileType java setlocal columns=136
-    " endif
     " don't replace Tabs with spaces when editing makefiles
     autocmd Filetype makefile setlocal noexpandtab
     " disable automatic code indentation when editing TeX and XML files
@@ -261,24 +268,29 @@ if has('autocmd')
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
-" general key mappings
+"
+" ┬┌ ┬─┐┐ ┬  ┌┌┐┬─┐┬─┐┬─┐o┌┐┐┌─┐┐─┐
+" ├┴┐├─ └┌┘  ││││─┤│─┘│─┘│││││ ┬└─┐
+" ┆ ┘┴─┘ ┆   ┘ ┆┘ ┆┆  ┆  ┆┆└┘┆─┘──┘
+"
+
 " center view on the search result
 noremap n nzz
 noremap N Nzz
 
-" press F4 to fix indentation in whole file; overwrites marker 'q' position
+" press f4 to fix indentation in whole file; overwrites marker 'q' position
 noremap <F4> mqggVG=`qzz
 inoremap <F4> <Esc>mqggVG=`qzza
 
-" press F5 to sort selection or paragraph
+" press f5 to sort selection or paragraph
 vnoremap <F5> :sort i<CR>
 nnoremap <F5> Vip:sort i<CR>
 
-" press F8 to turn the search results highlight off
+" press f8 to turn the search results highlight off
 noremap <F8> :nohl<CR>
 inoremap <F8> <Esc>:nohl<CR>a
 
-" press F12 to toggle showing the non-printable charactes
+" press f12 to toggle showing the non-printable charactes
 noremap <F12> :set list!<CR>
 inoremap <F12> <Esc>:set list!<CR>a
 
@@ -335,4 +347,8 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-" ------------------------the end----------------------------
+
+"
+" ┌┐┐┬ ┬┬─┐  ┬─┐┌┐┐┬─┐
+"  │ │─┤├─   ├─ ││││ │
+"  ┆ ┆ ┴┴─┘  ┴─┘┆└┘┆─┘
