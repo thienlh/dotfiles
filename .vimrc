@@ -53,9 +53,70 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'xero/sourcerer.vim'
 
 " vim airline
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-let g:airline_powerline_fonts = 1 " use powerline patched fonts
+" Plugin 'bling/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" let g:airline_powerline_fonts = 1 " use powerline patched fonts
+Plugin 'itchyny/lightline.vim'
+let g:lightline = {
+            \ 'colorscheme': 'PaperColor_dark',
+            \ 'active': {
+            \   'left': [ [ 'filename' ],
+            \             [ 'readonly', 'fugitive' ] ],
+            \   'right': [ [ 'percent', 'lineinfo' ],
+            \              [ 'fileencoding', 'filetype' ],
+            \              [ 'fileformat', 'syntastic' ] ]
+            \ },
+            \ 'component_function': {
+            \   'modified': 'WizMod',
+            \   'readonly': 'WizRO',
+            \   'fugitive': 'WizGit',
+            \   'filename': 'WizName',
+            \   'filetype': 'WizType',
+            \   'fileformat' : 'WizFormat',
+            \   'fileencoding': 'WizEncoding',
+            \   'mode': 'WizMode',
+            \ },
+            \ 'component_expand': {
+            \   'syntastic': 'SyntasticStatuslineFlag',
+            \ },
+            \ 'component_type': {
+            \   'syntastic': 'error',
+            \ },
+            \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+            \ 'subseparator': { 'left': '▒', 'right': '░' }
+            \ }
+
+function! WizMod()
+    return &ft =~ 'help\|vimfiler' ? '' : &modified ? '»' : &modifiable ? '' : ''
+endfunction
+
+function! WizRO()
+    return &ft !~? 'help\|vimfiler' && &readonly ? 'x' : ''
+endfunction
+
+function! WizGit()
+    if &ft !~? 'help\|vimfiler' && exists("*fugitive#head")
+        return fugitive#head()
+    endif
+    return ''
+endfunction
+
+function! WizName()
+    return ('' != WizMod() ? WizMod() . ' ' : '') .
+                \ ('' != expand('%:t') ? expand('%:t') : '[none]')
+endfunction
+
+function! WizType()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : '') : ''
+endfunction
+
+function! WizFormat()
+    return ''
+endfunction
+
+function! WizEncoding()
+    return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
+endfunction
 
 " tree explorer plugin
 Plugin 'scrooloose/nerdtree'
@@ -105,6 +166,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
+" tagbar plugin
+Plugin 'majutsushi/tagbar'
+nmap <F9> :TagbarToggle<CR>
+
 " unix-based only
 if !exists("g:os")
     if has('unix')
@@ -122,16 +187,15 @@ if !exists("g:os")
         let g:UltiSnipsJumpForwardTrigger="<c-b>"
         let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-        " tagbar plugin
-        Plugin 'majutsushi/tagbar'
-        nmap <F9> :TagbarToggle<CR>
-
         " set the tmux status bar color using airline/powerline
         Plugin 'edkolev/tmuxline.vim'
 
         " ack plugin
         Plugin 'mileszs/ack.vim'
         nnoremap <leader>a :Ack
+
+        " syntax checker
+        Plugin 'scrooloose/syntastic'
     endif
 endif
 
@@ -208,14 +272,15 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 "█▓▒░ tuning for gvim base on os
 if has('gui_running')
     set number                  " show line numbers
-    colorscheme pencil          " set color scheme
+    colorscheme papercolor      " set color scheme
     set background=dark         " dark background
 
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
         let g:airline_powerline_fonts = 0
     elseif has("gui_macvim")    " macvim
-        set guifont=Anonymous\ Pro\ for\ Powerline:h14
+        " set guifont=Anonymous\ Pro\ for\ Powerline:h14
+        set guifont=GohuFont:h14
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h10:cANSI
         let g:airline_powerline_fonts = 0
