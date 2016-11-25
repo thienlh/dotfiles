@@ -19,7 +19,7 @@ set hidden       " hide buffers, not close them
 " set the runtime path to include Vundle and initialize
 if !exists("g:os")
     if has('win64') || has('win32') || has('win16')
-        " sometimes you just have to deal with Windows
+        " sometimes you just have to deal with Windows ¯\_(ツ)_/¯
         set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
         call vundle#begin('$USERPROFILE/vimfiles/bundle/')
     else
@@ -53,12 +53,9 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'xero/sourcerer.vim'
 
 " vim airline
-" Plugin 'bling/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
-" let g:airline_powerline_fonts = 1 " use powerline patched fonts
 Plugin 'itchyny/lightline.vim'
 let g:lightline = {
-            \ 'colorscheme': 'PaperColor_dark',
+            \ 'colorscheme': 'sourcerer',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -153,9 +150,9 @@ Plugin 'yggdroot/indentline'
 
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1 " enable JSDoc
+let g:javascript_plugin_ngdoc = 1 " enable NGDoc
+let g:javascript_plugin_flow = 1  " enable Flow
 
 " vim motions on speed!
 Plugin 'easymotion/vim-easymotion'
@@ -268,22 +265,22 @@ set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
 set synmaxcol=800
 " highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+set wildmode=longest,list,full
+set wildignorecase
 
-"█▓▒░ tuning for gvim base on os
+"█▓▒░ tuning for gvim base on environment
 if has('gui_running')
+    " if has GUI running
     set number                  " show line numbers
     colorscheme papercolor      " set color scheme
     set background=dark         " dark background
 
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
-        let g:airline_powerline_fonts = 0
     elseif has("gui_macvim")    " macvim
-        " set guifont=Anonymous\ Pro\ for\ Powerline:h14
         set guifont=GohuFont:h14
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h10:cANSI
-        let g:airline_powerline_fonts = 0
     endif
 endif
 
@@ -294,7 +291,7 @@ if has('autocmd')
     " disable automatic code indentation for TeX and XML files
     autocmd FileType tex,xml setlocal indentexpr=
     " clean-up commands that run automatically on write
-    " USE WITH CAUTIOn
+    " USE WITH CAUTION
     " delete empty or whitespaces-only lines at the end of file
     autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
     " replace groups of empty or whitespaces-only lines
