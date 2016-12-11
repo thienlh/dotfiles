@@ -137,7 +137,7 @@ Plugin 'tpope/vim-surround'
 
 " visulize vim undo tree
 Plugin 'sjl/gundo.vim'
-nnoremap <F10> :GundoToggle<CR>
+nnoremap <leader>u :GundoToggle<CR>
 
 " a parser for a condensed HTML format
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -165,7 +165,7 @@ Plugin 'mattn/emmet-vim'
 
 " tagbar plugin
 Plugin 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 
 " unix-based only
 if !exists("g:os")
@@ -272,7 +272,7 @@ set wildignorecase
 if has('gui_running')
     " if has GUI running
     set number                  " show line numbers
-    colorscheme papercolor      " set color scheme
+    colorscheme sourcerer       " set color scheme
     set background=dark         " dark background
 
     if has("gui_gtk2")          " linux
@@ -306,6 +306,8 @@ endif
 " ├┴┐├─ └┌┘  ││││─┤│─┘│─┘│││││ ┬└─┐
 " ┆ ┘┴─┘ ┆   ┘ ┆┘ ┆┆  ┆  ┆┆└┘┆─┘──┘
 "
+" jk is escape
+inoremap jk <esc>
 
 " center view on the search result
 noremap n nzz
@@ -345,6 +347,9 @@ nnoremap <leader>v V`]
 
 " quickly open up ~/.vimrc file in a vertically split window
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" quickly open up ~/.zshrc file in a vertically split window
+nnoremap <leader>ez :e ~/.zshrc<cr>
 
 " open a new split window and switch over to it
 nnoremap <leader>w <C-w>v<C-w>l

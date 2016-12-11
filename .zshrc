@@ -5,10 +5,10 @@ export ZSH=/Users/thienle/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"robbyrussell
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -97,7 +97,17 @@ export LC_CTYPE=en_US.UTF-8
 # . /Users/thienle/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ### Set default user so there will be no thienle@Thien-Le-Macbook-Air blah blah
-DEFAULT_USER="thienle"
+# DEFAULT_USER="thienle"
+
+if [[ "$EUID" -ne "0" ]]
+then  # if user is not root
+	USER_LEVEL="%F{cyan}"
+else # root!
+	USER_LEVEL="%F{red}"
+fi
+
+# PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]$(prompt_git_info)── -%f '
+PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]── -%f '
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
