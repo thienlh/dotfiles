@@ -147,6 +147,7 @@ Plugin 'tpope/vim-fugitive'
 
 " display the indention levels with thin vertical lines
 Plugin 'yggdroot/indentline'
+let g:indentLine_char = '.'
 
 " javascript bundle for vim
 Plugin 'pangloss/vim-javascript'
@@ -168,7 +169,7 @@ Plugin 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR>
 
 " better syntax highlighting for java
-Plugin 'erics_vim_syntax_and_color_highlighting'
+Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
 
 " unix-based only
 if !exists("g:os")
@@ -380,6 +381,8 @@ nnoremap <CR> :nohlsearch<cr>
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    call lightline#init()
+    call lightline#enable()
 augroup END " }
 
 "
