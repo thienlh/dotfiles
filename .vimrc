@@ -167,6 +167,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR>
 
+" better syntax highlighting for java
+Plugin 'erics_vim_syntax_and_color_highlighting'
+
 " unix-based only
 if !exists("g:os")
     if has('unix')
