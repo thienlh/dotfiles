@@ -4,7 +4,7 @@
 "  \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\
 "   \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/
 "
-"█▓▒░ this is Le Hung Thien's .vimrc
+"█▓▒░       this is Le Hung Thien's .vimrc     ░▒▓█
 "
 set nocompatible " be the IMproved
 set modelines=0  " security
@@ -166,7 +166,7 @@ Plugin 'mattn/emmet-vim'
 
 " tagbar plugin
 Plugin 'majutsushi/tagbar'
-nmap <leader>t :TagbarToggle<CR>
+nmap <leader>tb :TagbarToggle<CR>
 
 " better syntax highlighting for java
 Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
@@ -228,6 +228,7 @@ set noswapfile                      " it's <current year>, vim!
 set undodir=~/.vim/tmp/undo//       " undo files folder
 set backupdir=~/.vim/tmp/backup//   " backups folder
 set directory=~/.vim/tmp/swap//     " swap files folder
+
 " make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
@@ -275,9 +276,9 @@ set wildignorecase
 "█▓▒░ tuning for gvim base on environment
 if has('gui_running')
     " if has GUI running
-    set number                  " show line numbers
-    colorscheme sourcerer       " set color scheme
-    set background=dark         " dark background
+    set number                   " show line numbers
+    colorscheme PaperColor       " set color scheme
+    set background=light         " dark background
 
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
@@ -292,15 +293,19 @@ endif
 if has('autocmd')
     " don't replace tabs with spaces when editing makefiles
     autocmd Filetype makefile setlocal noexpandtab
+
     " disable automatic code indentation for TeX and XML files
     autocmd FileType tex,xml setlocal indentexpr=
+
     " clean-up commands that run automatically on write
     " USE WITH CAUTION
     " delete empty or whitespaces-only lines at the end of file
     autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
+
     " replace groups of empty or whitespaces-only lines
     " with an empty line
     autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge
+
     " delete any trailing whitespaces
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
