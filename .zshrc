@@ -99,15 +99,8 @@ export LC_CTYPE=en_US.UTF-8
 ### Set default user so there will be no thienle@Thien-Le-Macbook-Air blah blah
 # DEFAULT_USER="thienle"
 
-if [[ "$EUID" -ne "0" ]]
-then  # if user is not root
-	USER_LEVEL="%F{cyan}"
-else # root!
-	USER_LEVEL="%F{red}"
-fi
-
-# PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]$(prompt_git_info)── -%f '
-PROMPT='${USER_LEVEL}[%F{white}%~${USER_LEVEL}]── -%f '
+#█▓▒░ load configs
+for config (~/.zsh/*.zsh) source $config
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
