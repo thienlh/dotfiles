@@ -55,7 +55,7 @@ Plugin 'xero/sourcerer.vim'
 " vim airline
 Plugin 'itchyny/lightline.vim'
 let g:lightline = {
-            \ 'colorscheme': 'sourcerer',
+            \ 'colorscheme': 'darcula',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -118,14 +118,6 @@ endfunction
 " tree explorer plugin
 Plugin 'scrooloose/nerdtree'
 
-" the NERD commenter
-Plugin 'scrooloose/nerdcommenter'
-" add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" ruby on rails support
-Plugin 'tpope/vim-rails'
-
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'raimondi/delimitmate'
 
@@ -134,6 +126,9 @@ Bundle 'ervandew/supertab'
 
 " vim suround
 Plugin 'tpope/vim-surround'
+
+" comment stuff out.
+Plugin 'tpope/vim-commentary'
 
 " visulize vim undo tree
 Plugin 'sjl/gundo.vim'
@@ -170,6 +165,9 @@ nmap <leader>tb :TagbarToggle<CR>
 
 " better syntax highlighting for java
 Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
+
+" syntax highlight for powershell
+Plugin 'pprovost/vim-ps1'
 
 " unix-based only
 if !exists("g:os")
@@ -242,7 +240,7 @@ endif
 
 set autoread
 set autowrite
-au FocusLost * :wa
+" au FocusLost * :wa
 
 "█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything
@@ -277,15 +275,15 @@ set wildignorecase
 if has('gui_running')
     " if has GUI running
     set number                   " show line numbers
-    colorscheme PaperColor       " set color scheme
-    set background=light         " dark background
+    colorscheme sourcerer        " set color scheme
+    set background=dark          " dark background
 
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
         set guifont=GohuFont:h14
     elseif has("gui_win32")     " windows
-        set guifont=Consolas:h10:cANSI
+        set guifont=Consolas:h11:cANSI
     endif
 endif
 
@@ -323,9 +321,11 @@ noremap n nzz
 noremap N Nzz
 
 " F4 to fix indentation in whole file
-noremap <F4> mqggVG=`qzz
+" noremap <F4> mqggVG=`qzz
+noremap <F4> mqgg=G`qzz
 " overwrites marker 'q' position
-inoremap <F4> <Esc>mqggVG=`qzza
+" inoremap <F4> <Esc>mqggVG=`qzza
+inoremap <F4> <Esc>mqgg=G`qzza
 
 " F5 to sort selection or paragraph
 vnoremap <F5> :sort i<CR>
