@@ -51,11 +51,13 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'xero/sourcerer.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'fcpg/vim-orbital'
 
 " vim airline
 Plugin 'itchyny/lightline.vim'
 let g:lightline = {
-            \ 'colorscheme': 'darcula',
+            \ 'colorscheme': 'sourcerer',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -166,25 +168,12 @@ nmap <leader>tb :TagbarToggle<CR>
 " better syntax highlighting for java
 Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
 
-" syntax highlight for powershell
-Plugin 'pprovost/vim-ps1'
-
 " unix-based only
 if !exists("g:os")
     if has('unix')
-        " auto code completion
-        Plugin 'valloric/youcompleteme'
-
         " snippets configurations
         Plugin 'sirver/ultisnips'   " the engine
         Plugin 'honza/vim-snippets' " the actual snippets
-
-        " make youcompleteme compatible with ultisnips and supertab
-        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-        let g:SuperTabDefaultCompletionType = '<C-n>'
-        let g:UltiSnipsJumpForwardTrigger="<c-b>"
-        let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
         " set the tmux status bar color using airline/powerline
         Plugin 'edkolev/tmuxline.vim'
@@ -195,6 +184,10 @@ if !exists("g:os")
 
         " syntax checker
         Plugin 'scrooloose/syntastic'
+    elseif has('win32')
+        " syntax highlight for powershell
+        Plugin 'pprovost/vim-ps1'
+
     endif
 endif
 
@@ -240,7 +233,7 @@ endif
 
 set autoread
 set autowrite
-" au FocusLost * :wa
+au FocusLost * :wa
 
 "█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything
@@ -321,10 +314,8 @@ noremap n nzz
 noremap N Nzz
 
 " F4 to fix indentation in whole file
-" noremap <F4> mqggVG=`qzz
 noremap <F4> mqgg=G`qzz
 " overwrites marker 'q' position
-" inoremap <F4> <Esc>mqggVG=`qzza
 inoremap <F4> <Esc>mqgg=G`qzza
 
 " F5 to sort selection or paragraph
@@ -381,6 +372,12 @@ vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
 nnoremap <CR> :nohlsearch<cr>
+
+" mappings to quickly traverse vim's lists
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> [B :blast<CR>
 
 "█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
