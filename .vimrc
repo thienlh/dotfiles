@@ -6,9 +6,10 @@
 "
 "█▓▒░       this is Le Hung Thien's .vimrc     ░▒▓█
 "
-set nocompatible " be the IMproved
-set modelines=0  " security
-set hidden       " hide buffers, not close them
+set nocompatible             " be the IMproved
+set modelines=0              " security
+set hidden                   " hide buffers, not close them
+packadd! matchit             " enable matchit plugin
 
 "
 " ┐ ┬┬ ┐┌┐┐┬─┐┬  ┬─┐
@@ -56,8 +57,9 @@ Plugin 'fcpg/vim-orbital'
 
 " vim airline
 Plugin 'itchyny/lightline.vim'
+
 let g:lightline = {
-            \ 'colorscheme': 'sourcerer',
+            \ 'colorscheme' : 'darcula',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -187,7 +189,6 @@ if !exists("g:os")
     elseif has('win32')
         " syntax highlight for powershell
         Plugin 'pprovost/vim-ps1'
-
     endif
 endif
 
@@ -233,7 +234,7 @@ endif
 
 set autoread
 set autowrite
-au FocusLost * :wa
+" au FocusLost * :wa
 
 "█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything
@@ -264,19 +265,51 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 set wildmode=longest,list,full
 set wildignorecase
 
+"█▓▒░ colorscheme and backgroud
+colorscheme PaperColor          " colorscheme
+set background=dark             " dark background
+
 "█▓▒░ tuning for gvim base on environment
 if has('gui_running')
     " if has GUI running
-    set number                   " show line numbers
-    colorscheme sourcerer        " set color scheme
-    set background=dark          " dark background
+    set number                  " show line numbers
 
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
         set guifont=GohuFont:h14
+        colorscheme sourcerer          " colorscheme
+        let g:lightline = {
+                    \ 'colorscheme' : 'sourcerer',
+                    \ 'active': {
+                    \   'left': [ [ 'filename' ],
+                    \             [ 'readonly', 'fugitive' ] ],
+                    \   'right': [ [ 'percent', 'lineinfo' ],
+                    \              [ 'fileencoding', 'filetype' ],
+                    \              [ 'fileformat', 'syntastic' ] ]
+                    \ },
+                    \ 'component_function': {
+                    \   'modified': 'WizMod',
+                    \   'readonly': 'WizRO',
+                    \   'fugitive': 'WizGit',
+                    \   'filename': 'WizName',
+                    \   'filetype': 'WizType',
+                    \   'fileformat' : 'WizFormat',
+                    \   'fileencoding': 'WizEncoding',
+                    \   'mode': 'WizMode',
+                    \ },
+                    \ 'component_expand': {
+                    \   'syntastic': 'SyntasticStatuslineFlag',
+                    \ },
+                    \ 'component_type': {
+                    \   'syntastic': 'error',
+                    \ },
+                    \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+                    \ 'subseparator': { 'left': '▒', 'right': '░' }
+                    \ }
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h11:cANSI
+        colorscheme vorange      " set color scheme
     endif
 endif
 
