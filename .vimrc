@@ -9,7 +9,7 @@
 set nocompatible             " be the IMproved
 set modelines=0              " security
 set hidden                   " hide buffers, not close them
-packadd! matchit             " enable matchit plugin
+runtime macros/matchit.vim   " enable matchit plugin
 
 "
 " ┐ ┬┬ ┐┌┐┐┬─┐┬  ┬─┐
@@ -278,7 +278,8 @@ if has('gui_running')
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
         set guifont=GohuFont:h14
-        colorscheme sourcerer          " colorscheme
+        colorscheme sourcerer
+
         let g:lightline = {
                     \ 'colorscheme' : 'sourcerer',
                     \ 'active': {
@@ -424,6 +425,9 @@ function! s:VSetSearch()
   let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
   let @s = temp
 endfunction
+
+" count the number of search matches
+nnoremap <silent> <Leader>c :%s///gn<CR>
 
 "█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
