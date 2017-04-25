@@ -404,7 +404,8 @@ vmap <C-k> xkP`[V`]
 vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
-nnoremap <CR> :nohlsearch<cr>
+" nnoremap <CR> :nohlsearch<cr>
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
 " mappings to quickly traverse vim's lists
 nnoremap <silent> [b :bprevious<CR>
