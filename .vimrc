@@ -412,6 +412,18 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> [B :blast<CR>
 
+" press * to find current selection in visual mode
+" as in tip 86, page 212 of pragmatic practical vim
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
+
+function! s:VSetSearch()
+  let temp = @s
+  norm! gv"sy
+  let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+  let @s = temp
+endfunction
+
 "█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
     autocmd!
