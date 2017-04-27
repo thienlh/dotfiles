@@ -170,6 +170,9 @@ nmap <leader>tb :TagbarToggle<CR>
 " better syntax highlighting for java
 Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
 
+" start a * or # search from a visual block
+Plugin 'nelstrom/vim-visual-star-search'
+
 " unix-based only
 if !exists("g:os")
     if has('unix')
@@ -406,25 +409,13 @@ vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
 " nnoremap <CR> :nohlsearch<cr>
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
 
 " mappings to quickly traverse vim's lists
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> [B :blast<CR>
-
-" press * to find current selection in visual mode
-" as in tip 86, page 212 of pragmatic practical vim
-xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
-xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
-
-function! s:VSetSearch()
-  let temp = @s
-  norm! gv"sy
-  let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
-  let @s = temp
-endfunction
 
 " count the number of search matches
 nnoremap <silent> <Leader>c :%s///gn<CR>
