@@ -134,10 +134,6 @@ Plugin 'tpope/vim-surround'
 " comment stuff out.
 Plugin 'tpope/vim-commentary'
 
-" visulize vim undo tree
-Plugin 'sjl/gundo.vim'
-nnoremap <leader>u :GundoToggle<CR>
-
 " a parser for a condensed HTML format
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -189,6 +185,15 @@ if !exists("g:os")
 
         " syntax checker
         Plugin 'scrooloose/syntastic'
+        " syntastic configurations
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
     elseif has('win32')
         " syntax highlight for powershell
         Plugin 'pprovost/vim-ps1'
@@ -409,7 +414,7 @@ vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
 " nnoremap <CR> :nohlsearch<cr>
-nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
+nnoremap <silent> <CR> :<C-u>nohlsearch<CR><C-l>
 
 " mappings to quickly traverse vim's lists
 nnoremap <silent> [b :bprevious<CR>
