@@ -10,6 +10,7 @@ set nocompatible             " be the IMproved
 set modelines=0              " security
 set hidden                   " hide buffers, not close them
 runtime macros/matchit.vim   " enable matchit plugin
+syntax on                    " syntax highlight for java
 
 "
 " ┐ ┬┬ ┐┌┐┐┬─┐┬  ┬─┐
@@ -163,9 +164,6 @@ Plugin 'mattn/emmet-vim'
 Plugin 'majutsushi/tagbar'
 nmap <leader>tb :TagbarToggle<CR>
 
-" better syntax highlighting for java
-Plugin 'sentientmachine/erics_vim_syntax_and_color_highlighting'
-
 " start a * or # search from a visual block
 Plugin 'nelstrom/vim-visual-star-search'
 
@@ -181,19 +179,9 @@ if !exists("g:os")
 
         " ack plugin
         Plugin 'mileszs/ack.vim'
-        nnoremap <leader>a :Ack
 
         " syntax checker
         Plugin 'scrooloose/syntastic'
-        " syntastic configurations
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
     elseif has('win32')
         " syntax highlight for powershell
         Plugin 'pprovost/vim-ps1'
@@ -242,7 +230,6 @@ endif
 
 set autoread
 set autowrite
-" au FocusLost * :wa
 
 "█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything
@@ -286,39 +273,8 @@ if has('gui_running')
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
         set guifont=GohuFont:h14
-        colorscheme sourcerer
-
-        let g:lightline = {
-                    \ 'colorscheme' : 'sourcerer',
-                    \ 'active': {
-                    \   'left': [ [ 'filename' ],
-                    \             [ 'readonly', 'fugitive' ] ],
-                    \   'right': [ [ 'percent', 'lineinfo' ],
-                    \              [ 'fileencoding', 'filetype' ],
-                    \              [ 'fileformat', 'syntastic' ] ]
-                    \ },
-                    \ 'component_function': {
-                    \   'modified': 'WizMod',
-                    \   'readonly': 'WizRO',
-                    \   'fugitive': 'WizGit',
-                    \   'filename': 'WizName',
-                    \   'filetype': 'WizType',
-                    \   'fileformat' : 'WizFormat',
-                    \   'fileencoding': 'WizEncoding',
-                    \   'mode': 'WizMode',
-                    \ },
-                    \ 'component_expand': {
-                    \   'syntastic': 'SyntasticStatuslineFlag',
-                    \ },
-                    \ 'component_type': {
-                    \   'syntastic': 'error',
-                    \ },
-                    \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
-                    \ 'subseparator': { 'left': '▒', 'right': '░' }
-                    \ }
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h11:cANSI
-        colorscheme vorange      " set color scheme
     endif
 endif
 
@@ -414,7 +370,7 @@ vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
 " nnoremap <CR> :nohlsearch<cr>
-nnoremap <silent> <CR> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
 
 " mappings to quickly traverse vim's lists
 nnoremap <silent> [b :bprevious<CR>
@@ -423,7 +379,7 @@ nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> [B :blast<CR>
 
 " count the number of search matches
-nnoremap <silent> <Leader>c :%s///gn<CR>
+nnoremap <silent> <Leader>c :%s///gn<CR>n
 
 "█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
