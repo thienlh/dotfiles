@@ -17,7 +17,6 @@ syntax on                    " syntax highlight for java
 " │┌┘│ │││││ ││  ├─
 " └┘ ┆─┘┆└┘┆─┘┆─┘┴─┘
 "
-
 " set the runtime path to include Vundle and initialize
 if !exists("g:os")
     if has('win64') || has('win32') || has('win16')
@@ -38,9 +37,8 @@ filetype off " required, will be on again when Vundle is completed
 " │─┘│  │ ││ ┬││││└─┐
 " ┆  ┆─┘┆─┘┆─┘┆┆└┘──┘
 "
-
 "█▓▒░ let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim' " required
+Plugin 'VundleVim/Vundle.vim'
 
 "█▓▒░ color themes
 Plugin 'marfisc/vorange'
@@ -56,11 +54,11 @@ Plugin 'xero/sourcerer.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'fcpg/vim-orbital'
 
-" vim airline
+" lightweight status line
 Plugin 'itchyny/lightline.vim'
-
+" configuration for lightline
 let g:lightline = {
-            \ 'colorscheme' : 'darcula',
+            \ 'colorscheme' : 'sourcerer',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -129,14 +127,11 @@ Plugin 'raimondi/delimitmate'
 " perform all your vim insert mode completions with <tab>
 Bundle 'ervandew/supertab'
 
-" vim suround
+" vim surround
 Plugin 'tpope/vim-surround'
 
-" comment stuff out.
+" comment stuff out
 Plugin 'tpope/vim-commentary'
-
-" a parser for a condensed HTML format
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " 'a git wrapper so awesome, it should be illegal'
 " it's also not working with windows, great!
@@ -161,7 +156,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " emmet for vim
 Plugin 'mattn/emmet-vim'
 
-" tagbar plugin
+" tag bar plugin
 Plugin 'majutsushi/tagbar'
 nmap <leader>t :TagbarToggle<CR>
 
@@ -195,14 +190,13 @@ call vundle#end()            " required
 " ┬─┐┬─┐┬─┐┐─┐┌─┐┌┐┐┬─┐┬    ┐─┐┬─┐┌┐┐┌┐┐o┌┐┐┌─┐┐─┐
 " │─┘├─ │┬┘└─┐│ │││││─┤│    └─┐├─  │  │ │││││ ┬└─┐
 " ┆  ┴─┘┆└┘──┘┘─┘┆└┘┘ ┆┆─┘  ──┘┴─┘ ┆  ┆ ┆┆└┘┆─┘──┘
-
 "█▓▒░ interface settings
 set encoding=utf-8  " encoding used for displaying file
 set ruler           " show the cursor position all the time
 set showmatch       " highlight matching braces
 set showmode        " show insert/replace/visual mode
 set t_Co=256        " capable of displaying 256 colors
-set laststatus=2    " always display the statusline in all windows
+set laststatus=2    " always display the status line in all windows
 set wrap            " always wrap long lines
 set guioptions-=r   " hide the right scroll bar
 set guioptions-=L   " hide the left scroll bar
@@ -259,20 +253,20 @@ set synmaxcol=800
 " highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" config tab completion menu
+" configurations for tab completion menu
 set wildmenu
 set wildmode=longest:list,full
 set wildignorecase
 
-"█▓▒░ colorscheme and backgroud
-colorscheme PaperColor          " colorscheme
+"█▓▒░ colorscheme and background
+colorscheme sourcerer             " colorscheme
 set background=dark             " dark background
 
-"█▓▒░ tuning for gvim base on environment
+"█▓▒░ tuning for gVim base on environment
 if has('gui_running')
     set number                  " show line numbers
 
-    if has("gui_gtk2")          " linux
+    if has("gui_gtk2")          " Linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
         set guifont=GohuFont:h14
@@ -291,14 +285,14 @@ if has('autocmd')
 
     " clean-up commands that run automatically on write
     " USE WITH CAUTION
-    " delete empty or whitespaces-only lines at the end of file
+    " delete empty or white spaces-only lines at the end of file
     autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
 
-    " replace groups of empty or whitespaces-only lines
+    " replace groups of empty or white spaces-only lines
     " with an empty line
     autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge
 
-    " delete any trailing whitespaces
+    " delete any trailing white spaces
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
@@ -320,7 +314,7 @@ inoremap <F4> <Esc>mqgg=G`qzza
 vnoremap <F5> :sort i<CR>
 nnoremap <F5> Vip:sort i<CR>
 
-" press f12 to toggle showing the non-printable charactes
+" press F12 to toggle showing the non-printable characters
 noremap <F12> :set list!<CR>
 inoremap <F12> <Esc>:set list!<CR>a
 
@@ -335,7 +329,7 @@ nnoremap j gj
 nnoremap k gk
 
 " get rid of that stupid goddamned help key that you will
-" invaribly hit constantly while aiming for escape
+" invariably hit constantly while aiming for escape
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
