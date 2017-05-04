@@ -139,6 +139,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " 'a git wrapper so awesome, it should be illegal'
+" it's also not working with windows, great!
 Plugin 'tpope/vim-fugitive'
 
 " display the indention levels with thin vertical lines
@@ -151,7 +152,7 @@ let g:javascript_plugin_jsdoc = 1 " enable JSDoc
 let g:javascript_plugin_ngdoc = 1 " enable NGDoc
 let g:javascript_plugin_flow = 1  " enable Flow
 
-" vim motions on speed!
+" vim motions on speed
 Plugin 'easymotion/vim-easymotion'
 
 " active fork of kien/ctrlp
@@ -162,7 +163,7 @@ Plugin 'mattn/emmet-vim'
 
 " tagbar plugin
 Plugin 'majutsushi/tagbar'
-nmap <leader>tb :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 
 " start a * or # search from a visual block
 Plugin 'nelstrom/vim-visual-star-search'
@@ -228,8 +229,8 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
-set autoread
-set autowrite
+set autoread                        " auto read changed file
+set autowrite                       " auto write changed to file
 
 "█▓▒░ edit settings
 set backspace=indent,eol,start  " backspacing over everything
@@ -257,7 +258,10 @@ set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
 set synmaxcol=800
 " highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-set wildmode=longest,list,full
+
+" config tab completion menu
+set wildmenu
+set wildmode=longest:list,full
 set wildignorecase
 
 "█▓▒░ colorscheme and backgroud
@@ -266,7 +270,6 @@ set background=dark             " dark background
 
 "█▓▒░ tuning for gvim base on environment
 if has('gui_running')
-    " if has GUI running
     set number                  " show line numbers
 
     if has("gui_gtk2")          " linux
@@ -304,9 +307,6 @@ endif
 " ├┴┐├─ └┌┘  ││││─┤│─┘│─┘│││││ ┬└─┐
 " ┆ ┘┴─┘ ┆   ┘ ┆┘ ┆┆  ┆  ┆┆└┘┆─┘──┘
 "
-" jk is escape
-inoremap jk <esc>
-
 " center view on the search result
 noremap n nzz
 noremap N Nzz
@@ -358,9 +358,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" [S]plit line (sister to [J]oin lines)
-nnoremap S i<cr><esc><right>
-
 " bubble single lines
 nmap <C-k> ddkP
 nmap <C-j> ddp
@@ -369,10 +366,9 @@ vmap <C-k> xkP`[V`]
 vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
-" nnoremap <CR> :nohlsearch<cr>
 nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
 
-" mappings to quickly traverse vim's lists
+" mappings to quickly traverse vim's buffer lists
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
