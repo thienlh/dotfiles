@@ -10,52 +10,33 @@ set nocompatible             " be the IMproved
 set modelines=0              " security
 set hidden                   " hide buffers, not close them
 runtime macros/matchit.vim   " enable matchit plugin
-syntax on                    " syntax highlight for java
 
-"
-" ┐ ┬┬ ┐┌┐┐┬─┐┬  ┬─┐
-" │┌┘│ │││││ ││  ├─
-" └┘ ┆─┘┆└┘┆─┘┆─┘┴─┘
-"
-" set the runtime path to include Vundle and initialize
-if !exists("g:os")
-    if has('win64') || has('win32') || has('win16')
-        " sometimes you just have to deal with Windows ¯\_(ツ)_/¯
-        set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-        call vundle#begin('$USERPROFILE/vimfiles/bundle/')
-    else
-        " macOS and linux
-        set rtp+=~/.vim/bundle/Vundle.vim
-        call vundle#begin()
-    endif
-endif
+" ┐ ┬o┌┌┐  ┬─┐┬  ┬ ┐┌─┐
+" │┌┘││││  │─┘│  │ ││ ┬
+" └┘ ┆┘ ┆  ┆  ┆─┘┆─┘┆─┘
+call plug#begin('~/.vim/plugged')
 
-filetype off " required, will be on again when Vundle is completed
-
-"
-" ┬─┐┬  ┬ ┐┌─┐o┌┐┐┐─┐
-" │─┘│  │ ││ ┬││││└─┐
-" ┆  ┆─┘┆─┘┆─┘┆┆└┘──┘
-"
-"█▓▒░ let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim'
+" Make sure you use single quotes
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 "█▓▒░ color themes
-Plugin 'marfisc/vorange'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'romainl/apprentice'
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'chriskempson/base16-vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'xero/sourcerer.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'fcpg/vim-orbital'
+Plug 'marfisc/vorange'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'reedes/vim-colors-pencil'
+Plug 'romainl/apprentice'
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'xero/sourcerer.vim'
+Plug 'morhetz/gruvbox'
+Plug 'fcpg/vim-orbital'
+Plug 'whatyouhide/vim-gotham'
 
 " lightweight status line
-Plugin 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
+
 " configuration for lightline
 let g:lightline = {
             \ 'colorscheme' : 'sourcerer',
@@ -118,74 +99,69 @@ function! WizEncoding()
     return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
 endfunction
 
-" tree explorer plugin
-Plugin 'scrooloose/nerdtree'
-
 " automatic closing of quotes, parenthesis, brackets, etc.
-Plugin 'raimondi/delimitmate'
+Plug 'raimondi/delimitmate'
 
 " perform all your vim insert mode completions with <tab>
-Bundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " vim surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " comment stuff out
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 
 " 'a git wrapper so awesome, it should be illegal'
-" it's also not working with windows, great!
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " display the indention levels with thin vertical lines
-Plugin 'yggdroot/indentline'
+Plug 'yggdroot/indentline'
 let g:indentLine_char = '.'
 
 " javascript bundle for vim
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
 let g:javascript_plugin_jsdoc = 1 " enable JSDoc
 let g:javascript_plugin_ngdoc = 1 " enable NGDoc
 let g:javascript_plugin_flow = 1  " enable Flow
 
+" typescript syntax files for vim
+Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+
 " vim motions on speed
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 " active fork of kien/ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " emmet for vim
-Plugin 'mattn/emmet-vim'
-
-" tag bar plugin
-Plugin 'majutsushi/tagbar'
-nmap <leader>t :TagbarToggle<CR>
+Plug 'mattn/emmet-vim'
 
 " start a * or # search from a visual block
-Plugin 'nelstrom/vim-visual-star-search'
+Plug 'nelstrom/vim-visual-star-search'
 
 " unix-based only
 if !exists("g:os")
     if has('unix')
         " snippets configurations
-        Plugin 'sirver/ultisnips'   " the engine
-        Plugin 'honza/vim-snippets' " the actual snippets
+        Plug 'sirver/ultisnips'   " the engine
+        Plug 'honza/vim-snippets' " the actual snippets
 
         " set the tmux status bar color using airline/powerline
-        Plugin 'edkolev/tmuxline.vim'
+        Plug 'edkolev/tmuxline.vim'
 
         " ack plugin
-        Plugin 'mileszs/ack.vim'
+        Plug 'mileszs/ack.vim'
 
         " syntax checker
-        Plugin 'scrooloose/syntastic'
+        Plug 'scrooloose/syntastic'
     elseif has('win32')
         " syntax highlight for powershell
-        Plugin 'pprovost/vim-ps1'
+        Plug 'pprovost/vim-ps1'
     endif
 endif
 
 "█▓▒░ all of plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 
 " ┬─┐┬─┐┬─┐┐─┐┌─┐┌┐┐┬─┐┬    ┐─┐┬─┐┌┐┐┌┐┐o┌┐┐┌─┐┐─┐
 " │─┘├─ │┬┘└─┐│ │││││─┤│    └─┐├─  │  │ │││││ ┬└─┐
@@ -201,6 +177,7 @@ set wrap            " always wrap long lines
 set guioptions-=r   " hide the right scroll bar
 set guioptions-=L   " hide the left scroll bar
 set foldenable      " enable code folding
+syntax on           " syntax highlight for java
 
 "█▓▒░ read/write settings
 set confirm                         " confirm :q for unsaved changes
@@ -255,7 +232,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " configurations for tab completion menu
 set wildmenu
-set wildmode=longest:list,full
+set wildmode=longest,list:full
 set wildignorecase
 
 "█▓▒░ colorscheme and background
