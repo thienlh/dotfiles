@@ -39,7 +39,7 @@ Plug 'itchyny/lightline.vim'
 
 " configuration for lightline
 let g:lightline = {
-            \ 'colorscheme' : 'sourcerer',
+            \ 'colorscheme' : 'gotham',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -139,6 +139,11 @@ Plug 'mattn/emmet-vim'
 " start a * or # search from a visual block
 Plug 'nelstrom/vim-visual-star-search'
 
+" color hex codes and color names
+Plug 'chrisbra/colorizer', {'on': 'ColorToggle'}
+" do not colorize colornames
+let g:colorizer_colornames = 0
+
 " unix-based only
 if !exists("g:os")
     if has('unix')
@@ -232,11 +237,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " configurations for tab completion menu
 set wildmenu
-set wildmode=longest,list:full
+set wildmode=list:longest,full
 set wildignorecase
 
 "█▓▒░ colorscheme and background
-colorscheme sourcerer             " colorscheme
+colorscheme gotham              " colorscheme
 set background=dark             " dark background
 
 "█▓▒░ tuning for gVim base on environment
