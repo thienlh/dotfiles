@@ -144,6 +144,9 @@ Plug 'chrisbra/colorizer', {'on': 'ColorToggle'}
 " do not colorize colornames
 let g:colorizer_colornames = 0
 
+" kotlin plugin for vim
+Plug 'udalov/kotlin-vim'
+
 " unix-based only
 if !exists("g:os")
     if has('unix')
