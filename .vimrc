@@ -39,7 +39,7 @@ Plug 'itchyny/lightline.vim'
 
 " configuration for lightline
 let g:lightline = {
-            \ 'colorscheme' : 'gotham',
+            \ 'colorscheme' : 'sourcerer',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -104,6 +104,19 @@ Plug 'raimondi/delimitmate'
 
 " perform all your vim insert mode completions with <tab>
 Plug 'ervandew/supertab'
+" a code completion engine
+Plug 'valloric/youcompleteme'
+" snippets configurations
+Plug 'sirver/ultisnips'   " the engine
+Plug 'honza/vim-snippets' " the actual snippets
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " vim surround
 Plug 'tpope/vim-surround'
@@ -144,24 +157,14 @@ Plug 'chrisbra/colorizer', {'on': 'ColorToggle'}
 " do not colorize colornames
 let g:colorizer_colornames = 0
 
-" kotlin plugin for vim
-Plug 'udalov/kotlin-vim'
+" syntax checker
+Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
 
 " unix-based only
 if !exists("g:os")
     if has('unix')
-        " snippets configurations
-        Plug 'sirver/ultisnips'   " the engine
-        Plug 'honza/vim-snippets' " the actual snippets
-
-        " set the tmux status bar color using airline/powerline
-        Plug 'edkolev/tmuxline.vim'
-
         " ack plugin
         Plug 'mileszs/ack.vim'
-
-        " syntax checker
-        Plug 'scrooloose/syntastic'
     elseif has('win32')
         " syntax highlight for powershell
         Plug 'pprovost/vim-ps1'
@@ -244,7 +247,7 @@ set wildmode=list:longest,full
 set wildignorecase
 
 "█▓▒░ colorscheme and background
-colorscheme gotham              " colorscheme
+colorscheme sourcerer           " colorscheme
 set background=dark             " dark background
 
 "█▓▒░ tuning for gVim base on environment
@@ -336,13 +339,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" bubble single lines
-nmap <C-k> ddkP
-nmap <C-j> ddp
-" bubble multiple lines
-vmap <C-k> xkP`[V`]
-vmap <C-j> xp`[V`]
 
 " clear the search buffer when hitting return
 nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
