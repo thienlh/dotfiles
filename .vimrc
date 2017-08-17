@@ -39,7 +39,7 @@ Plug 'itchyny/lightline.vim'
 
 " configuration for lightline
 let g:lightline = {
-            \ 'colorscheme' : 'sourcerer',
+            \ 'colorscheme' : 'gotham',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -98,6 +98,9 @@ endfunction
 function! WizEncoding()
     return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
 endfunction
+
+" mapping for Plug update
+noremap <F11> :PlugUpdate<CR>
 
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'raimondi/delimitmate'
@@ -247,7 +250,7 @@ set wildmode=list:longest,full
 set wildignorecase
 
 "█▓▒░ colorscheme and background
-colorscheme sourcerer           " colorscheme
+colorscheme gotham              " colorscheme
 set background=dark             " dark background
 
 "█▓▒░ tuning for gVim base on environment
