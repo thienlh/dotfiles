@@ -160,6 +160,9 @@ Plug 'davidhalter/jedi-vim'
 " syntax highlight for requirements.txt
 Plug 'raimon49/requirements.txt.vim'
 
+" git diff in the gutter
+Plug 'airblade/vim-gitgutter'
+
 if v:version >= 704
     " snippets!!!
     Plug 'SirVer/ultisnips'
