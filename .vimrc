@@ -17,7 +17,7 @@ runtime macros/matchit.vim   " enable matchit plugin
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 
 "█▓▒░ color themes
 Plug 'marfisc/vorange'
@@ -33,13 +33,11 @@ Plug 'xero/sourcerer.vim'
 Plug 'morhetz/gruvbox'
 Plug 'fcpg/vim-orbital'
 Plug 'whatyouhide/vim-gotham'
-
-" lightweight status line
 Plug 'itchyny/lightline.vim'
 
 " configuration for lightline
 let g:lightline = {
-            \ 'colorscheme' : 'gotham',
+            \ 'colorscheme' : 'gruvbox',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -100,26 +98,13 @@ function! WizEncoding()
 endfunction
 
 " mapping for Plug update
-noremap <F11> :PlugUpdate<CR>
+noremap <F10> :PlugUpdate<CR>
 
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'raimondi/delimitmate'
 
 " perform all your vim insert mode completions with <tab>
 Plug 'ervandew/supertab'
-" a code completion engine
-Plug 'valloric/youcompleteme'
-" snippets configurations
-Plug 'sirver/ultisnips'   " the engine
-Plug 'honza/vim-snippets' " the actual snippets
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " vim surround
 Plug 'tpope/vim-surround'
@@ -160,8 +145,30 @@ Plug 'chrisbra/colorizer', {'on': 'ColorToggle'}
 " do not colorize colornames
 let g:colorizer_colornames = 0
 
+" a collection of language packs for vim
+Plug 'sheerun/vim-polyglot'
+" default highlight is better than polyglot
+let g:polyglot_disabled = ['python']
+let python_highlight_all = 1
+
 " syntax checker
 Plug 'scrooloose/syntastic', {'on': 'SyntasticCheck'}
+
+" python autocomplete
+Plug 'davidhalter/jedi-vim'
+
+" syntax highlight for requirements.txt
+Plug 'raimon49/requirements.txt.vim'
+
+if v:version >= 704
+    " snippets!!!
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+    let g:UltiSnipsEditSplit="vertical"
+endif
 
 " unix-based only
 if !exists("g:os")
@@ -249,8 +256,13 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignorecase
 
+" clipboard
+if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+endif
+
 "█▓▒░ colorscheme and background
-colorscheme gotham              " colorscheme
+colorscheme gruvbox             " colorscheme
 set background=dark             " dark background
 
 "█▓▒░ tuning for gVim base on environment
@@ -260,31 +272,11 @@ if has('gui_running')
     if has("gui_gtk2")          " Linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
-        set guifont=GohuFont:h14
+        " set guifont=GohuFont:h14
+        set guifont=Iosevka:h14
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h11:cANSI
     endif
-endif
-
-"█▓▒░ automatic commands
-if has('autocmd')
-    " don't replace tabs with spaces when editing makefiles
-    autocmd Filetype makefile setlocal noexpandtab
-
-    " disable automatic code indentation for TeX and XML files
-    autocmd FileType tex,xml setlocal indentexpr=
-
-    " clean-up commands that run automatically on write
-    " USE WITH CAUTION
-    " delete empty or white spaces-only lines at the end of file
-    autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
-
-    " replace groups of empty or white spaces-only lines
-    " with an empty line
-    autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge
-
-    " delete any trailing white spaces
-    autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
 "
@@ -351,9 +343,61 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> [B :blast<CR>
+" close buffer
+noremap <leader>q :bd<CR>
 
 " count the number of search matches
 nnoremap <silent> <Leader>c :%s///gn<CR>n
+
+" set working directory
+nnoremap <leader>. :lcd %:p:h<CR>
+
+"█▓▒░ abbreviations: no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+" ┬─┐┬ ┐┌┐┐┌─┐┌─┐┌┌┐┬─┐  ┬─┐┬ ┐┬  ┬─┐┐─┐
+" │─┤│ │ │ │ ││  ││││ │  │┬┘│ ││  ├─ └─┐
+" ┘ ┆┆─┘ ┆ ┘─┘└─┘┘ ┆┆─┘  ┆└┘┆─┘┆─┘┴─┘──┘
+" the PC is fast enough, do syntax highlight syncing from start unless 200 lines
+augroup vimrc-sync-fromstart
+    autocmd!
+    autocmd BufEnter * :syntax sync maxlines=200
+augroup END
+
+" remember cursor position
+augroup vimrc-remember-cursor-position
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+if has('autocmd')
+    " don't replace tabs with spaces when editing makefiles
+    autocmd Filetype makefile setlocal noexpandtab
+
+    " disable automatic code indentation for TeX and XML files
+    autocmd FileType tex,xml setlocal indentexpr=
+
+    " clean-up commands that run automatically on write
+    " USE WITH CAUTION
+    " delete empty or white spaces-only lines at the end of file
+    autocmd BufWritePre * :%s/\(\s*\n\)\+\%$//ge
+
+    " replace groups of empty or white spaces-only lines
+    " with an empty line
+    autocmd BufWritePre * :%s/\(\s*\n\)\{3,}/\r\r/ge
+
+    " delete any trailing white spaces
+    autocmd BufWritePre * :%s/\s\+$//ge
+endif
 
 "█▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
