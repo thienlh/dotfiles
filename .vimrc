@@ -1,12 +1,12 @@
 "
-"     ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
-"     ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-"     ██║   ██║██║██╔████╔██║██████╔╝██║
-"     ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
-"      ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
-"       ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"      ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"      ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"      ██║   ██║██║██╔████╔██║██████╔╝██║
+"      ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"       ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"        ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 "
-"█▓▒░       this is Le Hung Thien's .vimrc     ░▒▓█
+" █▓▒░       this is Le Hung Thien's .vimrc     ░▒▓█
 "
 set nocompatible             " be the IMproved
 set modelines=0              " security
@@ -18,10 +18,7 @@ runtime macros/matchit.vim   " enable matchit plugin
 " └┘ ┆┘ ┆  ┆  ┆─┘┆─┘┆─┘
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
-Plug 'scrooloose/nerdtree'
-
-"█▓▒░ color themes
+" █▓▒░ color themes
 Plug 'marfisc/vorange'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'reedes/vim-colors-pencil'
@@ -35,8 +32,9 @@ Plug 'xero/sourcerer.vim'
 Plug 'morhetz/gruvbox'
 Plug 'fcpg/vim-orbital'
 Plug 'whatyouhide/vim-gotham'
-Plug 'itchyny/lightline.vim'
 
+" █▓▒░ other plugins
+Plug 'itchyny/lightline.vim'
 " configuration for lightline
 let g:lightline = {
             \ 'colorscheme' : 'gruvbox',
@@ -99,8 +97,12 @@ function! WizEncoding()
     return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
 endfunction
 
-" mapping for Plug update
-noremap <F10> :PlugUpdate<CR>
+" mapping for vim plug
+noremap <leader>u :PlugUpdate<CR>
+noremap <leader>i :PlugInstall<CR>
+
+" file browser
+Plug 'scrooloose/nerdtree'
 
 " automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'raimondi/delimitmate'
@@ -108,7 +110,7 @@ Plug 'raimondi/delimitmate'
 " perform all your vim insert mode completions with <tab>
 Plug 'ervandew/supertab'
 
-" vim surround
+" surround stuff
 Plug 'tpope/vim-surround'
 
 " comment stuff out
@@ -117,7 +119,7 @@ Plug 'tpope/vim-commentary'
 " 'a git wrapper so awesome, it should be illegal'
 Plug 'tpope/vim-fugitive'
 
-" display the indention levels with thin vertical lines
+" display the indention levels
 Plug 'yggdroot/indentline'
 let g:indentLine_char = '.'
 
@@ -125,7 +127,7 @@ let g:indentLine_char = '.'
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
 let g:javascript_plugin_jsdoc = 1 " enable JSDoc
 let g:javascript_plugin_ngdoc = 1 " enable NGDoc
-let g:javascript_plugin_flow = 1  " enable Flow
+let g:javascript_plugin_flow  = 1  " enable Flow
 
 " typescript syntax files for vim
 Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
@@ -186,13 +188,13 @@ if !exists("g:os")
     endif
 endif
 
-"█▓▒░ all of plugins must be added before the following line
+" █▓▒░ all of plugins must be added before the following line
 call plug#end()
 
 " ┬─┐┬─┐┬─┐┐─┐┌─┐┌┐┐┬─┐┬    ┐─┐┬─┐┌┐┐┌┐┐o┌┐┐┌─┐┐─┐
 " │─┘├─ │┬┘└─┐│ │││││─┤│    └─┐├─  │  │ │││││ ┬└─┐
 " ┆  ┴─┘┆└┘──┘┘─┘┆└┘┘ ┆┆─┘  ──┘┴─┘ ┆  ┆ ┆┆└┘┆─┘──┘
-"█▓▒░ interface settings
+" █▓▒░ interface settings
 set encoding=utf-8  " encoding used for displaying file
 set ruler           " show the cursor position all the time
 set showmatch       " highlight matching braces
@@ -205,7 +207,7 @@ set guioptions-=L   " hide the left scroll bar
 set foldenable      " enable code folding
 syntax on           " syntax highlight for java
 
-"█▓▒░ read/write settings
+" █▓▒░ read/write settings
 set confirm                         " confirm :q for unsaved changes
 set fileencoding=utf-8              " encoding used when saving file
 set undofile                        " keep the undo files
@@ -229,26 +231,26 @@ endif
 set autoread                        " auto read changed file
 set autowrite                       " auto write changed to file
 
-"█▓▒░ edit settings
-set backspace=indent,eol,start  " backspacing over everything
-set expandtab                   " fill tabs with spaces
-set nojoinspaces                " no space after '.' when joining
-set shiftwidth=4                " set indentation depth to 4 columns
-set softtabstop=4               " backspacing over 4 spaces
-set tabstop=4                   " set tabulator length to 4 columns
-set relativenumber              " show relative line number
+" █▓▒░ edit settings
+set backspace=indent,eol,start      " backspacing over everything
+set expandtab                       " fill tabs with spaces
+set nojoinspaces                    " no space after '.' when joining
+set shiftwidth=4                    " set indentation depth to 4 columns
+set softtabstop=4                   " backspacing over 4 spaces
+set tabstop=4                       " set tabulator length to 4 columns
+set relativenumber                  " show relative line number
 
-"█▓▒░ search settings
-set hlsearch    " highlight search results
-set incsearch   " do incremental search
-set ignorecase  " do case insensitive search...
-set smartcase   " ...unless capital letters are used
+" █▓▒░ search settings
+set hlsearch                        " highlight search results
+set incsearch                       " do incremental search
+set ignorecase                      " do case insensitive search...
+set smartcase                       " ...unless capital letters are used
 
 "█▓▒░ other settings
-filetype on         " enable file type detection
-filetype plugin on  " load the plugins for specific file types
-filetype indent on  " automatically indent code
-syntax enable       " enable syntax highlighting
+filetype on                         " enable file type detection
+filetype plugin on                  " load the plugins for specific file types
+filetype indent on                  " automatically indent code
+syntax enable                       " enable syntax highlighting
 " displaying non-printable characters
 set listchars=eol:$,tab:>-,trail:.,nbsp:_,extends:+,precedes:+
 " don't try to highlight lines longer than 800 characters.
@@ -266,18 +268,15 @@ if has('unnamedplus')
     set clipboard=unnamed,unnamedplus
 endif
 
-"█▓▒░ colorscheme and background
+" █▓▒░ colorscheme and background
 colorscheme gruvbox             " colorscheme
 set background=dark             " dark background
 
-"█▓▒░ tuning for gVim base on environment
+" █▓▒░ tuning base on environment
 if has('gui_running')
-    set number                  " show line numbers
-
-    if has("gui_gtk2")          " Linux
+    if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
-        " set guifont=GohuFont:h14
         set guifont=Iosevka:h14
     elseif has("gui_win32")     " windows
         set guifont=Consolas:h11:cANSI
@@ -340,7 +339,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" clear the search buffer when hitting return
+" no highlight on search results when hitting return
 nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
 
 " mappings to quickly traverse vim's buffer lists
@@ -357,7 +356,7 @@ nnoremap <silent> <Leader>c :%s///gn<CR>n
 " set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
 
-"█▓▒░ abbreviations: no one is really happy until you have this shortcuts
+" █▓▒░ abbreviations: no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
@@ -404,7 +403,7 @@ if has('autocmd')
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
-"█▓▒░ auto-reload .vimrc file
+" █▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
