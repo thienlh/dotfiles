@@ -98,8 +98,8 @@ function! WizEncoding()
 endfunction
 
 " mapping for vim plug
-noremap <leader>u :PlugUpdate<CR>
-noremap <leader>i :PlugInstall<CR>
+noremap <leader>uu :PlugUpdate<CR>
+noremap <leader>ii :PlugInstall<CR>
 
 " file browser
 Plug 'scrooloose/nerdtree'
