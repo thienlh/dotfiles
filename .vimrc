@@ -33,9 +33,8 @@ Plug 'morhetz/gruvbox'
 Plug 'fcpg/vim-orbital'
 Plug 'whatyouhide/vim-gotham'
 
-" █▓▒░ other plugins
+" █▓▒░ real plugins
 Plug 'itchyny/lightline.vim'
-" configuration for lightline
 let g:lightline = {
             \ 'colorscheme' : 'gruvbox',
             \ 'active': {
@@ -98,8 +97,7 @@ function! WizEncoding()
 endfunction
 
 " mapping for vim plug
-noremap <leader>uu :PlugUpdate<CR>
-noremap <leader>ii :PlugInstall<CR>
+noremap <F10> :PlugUpdate<CR>
 
 " file browser
 Plug 'scrooloose/nerdtree'
@@ -205,6 +203,7 @@ set wrap            " always wrap long lines
 set guioptions-=r   " hide the right scroll bar
 set guioptions-=L   " hide the left scroll bar
 set foldenable      " enable code folding
+set cursorline      " highlight current line
 syntax on           " syntax highlight for java
 
 " █▓▒░ read/write settings
@@ -238,6 +237,7 @@ set nojoinspaces                    " no space after '.' when joining
 set shiftwidth=4                    " set indentation depth to 4 columns
 set softtabstop=4                   " backspacing over 4 spaces
 set tabstop=4                       " set tabulator length to 4 columns
+set number                          " show line number
 set relativenumber                  " show relative line number
 
 " █▓▒░ search settings
@@ -279,7 +279,8 @@ if has('gui_running')
     elseif has("gui_macvim")    " macvim
         set guifont=Iosevka:h14
     elseif has("gui_win32")     " windows
-        set guifont=Consolas:h11:cANSI
+        " set guifont=Consolas:h11:cANSI
+        set guifont=Iosevka\ Slab:h11:cANSI
     endif
 endif
 
