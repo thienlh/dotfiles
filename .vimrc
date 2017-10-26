@@ -96,9 +96,6 @@ function! WizEncoding()
     return winwidth(0) > 70 ? (strlen(&fenc) ? &enc : &enc) : ''
 endfunction
 
-" mapping for vim plug
-noremap <F10> :PlugUpdate<CR>
-
 " file browser
 Plug 'scrooloose/nerdtree'
 
@@ -123,8 +120,8 @@ let g:indentLine_char = '.'
 
 " javascript bundle for vim
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'typescript']}
-let g:javascript_plugin_jsdoc = 1 " enable JSDoc
-let g:javascript_plugin_ngdoc = 1 " enable NGDoc
+let g:javascript_plugin_jsdoc = 1  " enable JSDoc
+let g:javascript_plugin_ngdoc = 1  " enable NGDoc
 let g:javascript_plugin_flow  = 1  " enable Flow
 
 " typescript syntax files for vim
@@ -133,8 +130,51 @@ Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 " vim motions on speed
 Plug 'easymotion/vim-easymotion'
 
-" active fork of kien/ctrlp
-Plug 'ctrlpvim/ctrlp.vim'
+" vimgrep
+Plug 'vim-scripts/grep.vim'
+
+" fzf
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+else
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
+endif
+
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+" the silver searcher
+if executable('ag')
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
+
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
+
+" customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " emmet for vim
 Plug 'mattn/emmet-vim'
@@ -260,7 +300,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " configurations for tab completion menu
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 set wildignorecase
 
 " clipboard
@@ -368,6 +409,9 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+" mapping for vim plug
+noremap <F10> :PlugUpdate<CR>
 
 " ┬─┐┬ ┐┌┐┐┌─┐┌─┐┌┌┐┬─┐  ┬─┐┬ ┐┬  ┬─┐┐─┐
 " │─┤│ │ │ │ ││  ││││ │  │┬┘│ ││  ├─ └─┐
