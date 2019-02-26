@@ -49,7 +49,7 @@ export ZSH=/Users/thienle/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx ruby brew docker gradle mvn tmux vim)
+plugins=(git osx brew docker tmux vim)
 
 # User configuration
 
@@ -107,3 +107,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # fortune | cowsay | lolcat
 toilet -d ~/Development/figlet-fonts -f rusto "be happy, thien!" | lolcat
 # clear
+
+

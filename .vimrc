@@ -36,7 +36,6 @@ Plug 'whatyouhide/vim-gotham'
 " █▓▒░ real plugins
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
-            \ 'colorscheme' : 'gruvbox',
             \ 'active': {
             \   'left': [ [ 'filename' ],
             \             [ 'readonly', 'fugitive' ] ],
@@ -135,25 +134,25 @@ Plug 'vim-scripts/grep.vim'
 
 " fzf
 if isdirectory('/usr/local/opt/fzf')
-  Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+    Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
 endif
 
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " the silver searcher
 if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+    set grepprg=ag\ --nogroup\ --nocolor
 endif
 
 " ripgrep
 if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+    set grepprg=rg\ --vimgrep
+    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
@@ -162,19 +161,19 @@ nnoremap <silent> <leader>e :FZF -m<CR>
 
 " customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " emmet for vim
 Plug 'mattn/emmet-vim'
@@ -207,12 +206,12 @@ Plug 'airblade/vim-gitgutter'
 
 if v:version >= 704
     " snippets!!!
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-    let g:UltiSnipsEditSplit="vertical"
+    " Plug 'SirVer/ultisnips'
+    " Plug 'honza/vim-snippets'
+    " let g:UltiSnipsExpandTrigger="<tab>"
+    " let g:UltiSnipsJumpForwardTrigger="<tab>"
+    " let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+    " let g:UltiSnipsEditSplit="vertical"
 endif
 
 " unix-based only
@@ -318,7 +317,7 @@ if has('gui_running')
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
-        set guifont=Iosevka:h14
+        set guifont=SF\ Mono:h13
     elseif has("gui_win32")     " windows
         " set guifont=Consolas:h11:cANSI
         set guifont=Iosevka\ Slab:h11:cANSI
@@ -448,12 +447,42 @@ if has('autocmd')
     autocmd BufWritePre * :%s/\s\+$//ge
 endif
 
+" reload lightline
+function! LightlineReload()
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
+
+" set background acording to macOS dark mode
+function! SetBackgroundMode(...)
+    let s:new_bg = "light"
+    let s:lightlinecolor = "gruvbox"
+
+    let s:mode = systemlist("defaults read -g AppleInterfaceStyle")[0]
+    if s:mode ==? "dark"
+        let s:new_bg = "dark"
+        let s:lightlinecolor = "lightline"
+    else
+        let s:new_bg = "light"
+        let s:lightlinecolor = "gruvbox"
+    endif
+
+    if &background !=? s:new_bg
+        let &background = s:new_bg
+        let g:lightline.colorscheme = s:lightlinecolor
+        call LightlineReload()
+    endif
+endfunction
+
+call SetBackgroundMode()
+call timer_start(3000, "SetBackgroundMode", {"repeat": -1})
+
 " █▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
-    call lightline#init()
-    call lightline#enable()
+    call LightlineReload()
 augroup END " }
 
 "
