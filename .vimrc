@@ -204,6 +204,9 @@ Plug 'raimon49/requirements.txt.vim'
 " git diff in the gutter
 Plug 'airblade/vim-gitgutter'
 
+" working with variants of a word
+Plug 'tpope/vim-abolish'
+
 if v:version >= 704
     " snippets!!!
     " Plug 'SirVer/ultisnips'
@@ -317,7 +320,32 @@ if has('gui_running')
     if has("gui_gtk2")          " linux
         set guifont=Inconsolata:h12
     elseif has("gui_macvim")    " macvim
-        set guifont=SF\ Mono:h13
+        set guifont=SF\ Mono:h12
+
+        " set background acording to macOS dark mode
+        function! SetBackgroundMode(...)
+            let s:new_bg = "light"
+            let s:lightlinecolor = "gruvbox"
+
+            let s:mode = systemlist("defaults read -g AppleInterfaceStyle")[0]
+            if s:mode ==? "dark"
+                let s:new_bg = "dark"
+                let s:lightlinecolor = "lightline"
+            else
+                let s:new_bg = "light"
+                let s:lightlinecolor = "gruvbox"
+            endif
+
+            if &background !=? s:new_bg
+                let &background = s:new_bg
+                let g:lightline.colorscheme = s:lightlinecolor
+                call LightlineReload()
+            endif
+        endfunction
+
+        call SetBackgroundMode()
+        call timer_start(3000, "SetBackgroundMode", {"repeat": -1})
+
     elseif has("gui_win32")     " windows
         " set guifont=Consolas:h11:cANSI
         set guifont=Iosevka\ Slab:h11:cANSI
@@ -453,30 +481,6 @@ function! LightlineReload()
     call lightline#colorscheme()
     call lightline#update()
 endfunction
-
-" set background acording to macOS dark mode
-function! SetBackgroundMode(...)
-    let s:new_bg = "light"
-    let s:lightlinecolor = "gruvbox"
-
-    let s:mode = systemlist("defaults read -g AppleInterfaceStyle")[0]
-    if s:mode ==? "dark"
-        let s:new_bg = "dark"
-        let s:lightlinecolor = "lightline"
-    else
-        let s:new_bg = "light"
-        let s:lightlinecolor = "gruvbox"
-    endif
-
-    if &background !=? s:new_bg
-        let &background = s:new_bg
-        let g:lightline.colorscheme = s:lightlinecolor
-        call LightlineReload()
-    endif
-endfunction
-
-call SetBackgroundMode()
-call timer_start(3000, "SetBackgroundMode", {"repeat": -1})
 
 " █▓▒░ auto-reload .vimrc file
 augroup reload_vimrc " {
