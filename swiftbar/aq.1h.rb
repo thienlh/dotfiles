@@ -1,4 +1,5 @@
-#!/usr/bin/env /usr/local/opt/ruby/bin/ruby
+#!/usr/bin/env /Users/thienle/.rbenv/shims/ruby
+# frozen_string_literal: true
 
 require 'uri'
 require 'net/http'
