@@ -19,18 +19,18 @@ current_pollution = response['data']['current']['pollution']
 aqius = current_pollution['aqius']
 
 conditions = {
-  '01d' => '☀️',
-  '01n' => '🌕',
-  '02d' => '🌤',
-  '02n' => '🌜',
-  '03d' => '🌥',
-  '04d' => '☁️',
-  '09d' => '🌧',
-  '10d' => '🌦',
-  '10n' => '☔️',
-  '11d' => '⛈',
-  '13d' => '🌨',
-  '50d' => '🌫'
+  '01d' => '􀆭', # clear sky (day)
+  '01n' => '􀇀', # clear sky (night)
+  '02d' => '􀇔', # few clouds (day)
+  '02n' => '􀇚', # few clouds (night)
+  '03d' => '􀇂', # scattered clouds
+  '04d' => '􀇂', # broken clouds
+  '09d' => '􀇈', # shower rain
+  '10d' => '􀇖', # rain (day time)
+  '10n' => '􀇜', # rain (night time)
+  '11d' => '􀇞', # thunderstorm
+  '13d' => '􀇦', # snow
+  '50d' => '􀆷'  # mist
 }
 
 ic = response['data']['current']['weather']['ic']
