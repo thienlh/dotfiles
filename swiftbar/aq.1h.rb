@@ -7,7 +7,7 @@ require 'json'
 require 'date'
 require 'relative_time'
 
-url = URI('http://api.airvisual.com/v2/nearest_city?key=e637b71b-ce35-4f0a-ade7-3f22efe12d41')
+url = URI("http://api.airvisual.com/v2/nearest_city?key=#{ENV['AQ_KEY']}")
 
 http = Net::HTTP.new(url.host, url.port)
 request = Net::HTTP::Get.new(url)
@@ -45,4 +45,5 @@ end
 
 puts "#{status} #{aqius} | size=15"
 puts '---'
-puts "#{city} #{conditions[ic]} (updated #{RelativeTime.in_words(DateTime.parse(current_pollution['ts']).new_offset('+07:00').to_time)})"
+puts "#{city} #{conditions[ic]}"
+puts "Updated #{RelativeTime.in_words(DateTime.parse(current_pollution['ts']).new_offset('+07:00').to_time)}"
