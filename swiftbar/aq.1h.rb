@@ -30,18 +30,19 @@ conditions = {
   '10n' => '􀇜', # rain (night time)
   '11d' => '􀇞', # thunderstorm
   '13d' => '􀇦', # snow
-  '50d' => '􀆷'  # mist
+  '50d' => '􀆷' # mist
 }
 
 ic = response['data']['current']['weather']['ic']
 
-status = '✇'
-case aqius
-when 0..49
-  status = '✓'
-when 50..99
-  status = '✗'
-end
+status = case aqius
+         when 0..49
+           '✓'
+         when 50..99
+           '✗'
+         else
+           '✇'
+         end
 
 puts "#{status} #{aqius} | size=15"
 puts '---'
