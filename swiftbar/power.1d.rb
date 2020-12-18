@@ -22,13 +22,17 @@ class PowerCutoff
 
   private
 
+  def text_at(selector)
+    @row.at_css(selector).text
+  end
+
   def set_field_values
-    @date = @row.at_css('td:nth-child(2)').text
+    @date = text_at('td:nth-child(2)')
     @day_relative = parse_relative_day(Date.parse(@date) - Date.today)
-    @start_time = @row.at_css('td:nth-child(3)').text
-    @end_time = @row.at_css('td:nth-child(4)').text
-    @station_name = @row.at_css('td:nth-child(5)').text
-    @reason = @row.at_css('td:nth-child(6)').text
+    @start_time = text_at('td:nth-child(3)')
+    @end_time = text_at('td:nth-child(4)')
+    @station_name = text_at('td:nth-child(5)')
+    @reason = text_at('td:nth-child(6)')
   end
 
   def find_power_cutoff_row(date, station_query)
