@@ -2,3 +2,5 @@ set relativenumber " Set the line number relative to current line
 set incsearch " Showing search results while typing
 set surround " vim-surround plugin
 set matchpairs=(:),{:},[:],<:>,?:\:
+" no highlight on search results when hitting return
+nnoremap <silent> <CR> :<C-u>nohlsearch<CR>
