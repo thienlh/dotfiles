@@ -54,7 +54,11 @@
 		<outline text="Six Colors" title="Six Colors" description="" type="rss" version="RSS" htmlUrl="https://sixcolors.com/" xmlUrl="http://feedpress.me/sixcolors"/>
 		<outline text="Sketch Blog" title="Sketch Blog" description="" type="rss" version="RSS" htmlUrl="https://www.sketch.com/" xmlUrl="https://www.sketch.com/blog/feed.xml"/>
 		<outline text="Stack Overflow Blog" title="Stack Overflow Blog" description="" type="rss" version="RSS" htmlUrl="https://stackoverflow.blog/" xmlUrl="https://stackoverflow.blog/feed/"/>
+<<<<<<< Updated upstream
 		<outline text="Steve McConnell" title="Steve McConnell" description="" type="rss" version="RSS" htmlUrl="https://stevemcconnell.com/" xmlUrl="https://stevemcconnell.com/feed/"/>
+=======
+		<outline text="Steve McConnell" title="Steve McConnell" description="" type="rss" version="RSS" htmlUrl="https://medium.com/@stevemcc?source=rss-bb47e8ceaa73------2" xmlUrl="https://medium.com/feed/@stevemcc"/>
+>>>>>>> Stashed changes
 		<outline text="The Architect Elevator" title="The Architect Elevator" description="" type="rss" version="RSS" htmlUrl="https://architectelevator.com/" xmlUrl="https://architectelevator.com/feed.xml"/>
 		<outline text="The Loop" title="The Loop" description="" type="rss" version="RSS" htmlUrl="https://www.loopinsight.com/" xmlUrl="http://www.loopinsight.com/feed/"/>
 		<outline text="The Mozilla Blog" title="The Mozilla Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.mozilla.org/" xmlUrl="http://blog.mozilla.com/feed/"/>
