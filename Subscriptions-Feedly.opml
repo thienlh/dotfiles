@@ -22,6 +22,7 @@
 		<outline text="Evil Martians’ team blog" title="Evil Martians’ team blog" description="" type="rss" version="RSS" htmlUrl="https://evilmartians.com/chronicles" xmlUrl="https://evilmartians.com/chronicles.atom"/>
 		<outline text="FlowingData" title="FlowingData" description="" type="rss" version="RSS" htmlUrl="https://flowingdata.com/" xmlUrl="http://feeds.feedburner.com/FlowingData"/>
 		<outline text="furbo.org" title="furbo.org" description="" type="rss" version="RSS" htmlUrl="https://furbo.org/" xmlUrl="https://furbo.org/feed/json"/>
+		<outline text="Góc nhìn" title="Góc nhìn" description="" type="rss" version="RSS" htmlUrl="https://vnexpress.net/rss/goc-nhin.rss" xmlUrl="https://vnexpress.net/rss/goc-nhin.rss"/>
 		<outline text="Halide" title="Halide" description="" type="rss" version="RSS" htmlUrl="https://blog.halide.cam?source=rss----ef958c3c10ff---4/" xmlUrl="https://blog.halide.cam/feed"/>
 		<outline text="Harvard Business Review" title="Harvard Business Review" description="" type="rss" version="RSS" htmlUrl="http://hbr.org/" xmlUrl="http://feeds.harvardbusiness.org/harvardbusiness/"/>
 		<outline text="Hongli Lai" title="Hongli Lai" description="" type="rss" version="RSS" htmlUrl="https://www.joyfulbikeshedding.com/blog" xmlUrl="https://www.joyfulbikeshedding.com/feed.xml"/>
@@ -54,11 +55,7 @@
 		<outline text="Six Colors" title="Six Colors" description="" type="rss" version="RSS" htmlUrl="https://sixcolors.com/" xmlUrl="http://feedpress.me/sixcolors"/>
 		<outline text="Sketch Blog" title="Sketch Blog" description="" type="rss" version="RSS" htmlUrl="https://www.sketch.com/" xmlUrl="https://www.sketch.com/blog/feed.xml"/>
 		<outline text="Stack Overflow Blog" title="Stack Overflow Blog" description="" type="rss" version="RSS" htmlUrl="https://stackoverflow.blog/" xmlUrl="https://stackoverflow.blog/feed/"/>
-<<<<<<< Updated upstream
-		<outline text="Steve McConnell" title="Steve McConnell" description="" type="rss" version="RSS" htmlUrl="https://stevemcconnell.com/" xmlUrl="https://stevemcconnell.com/feed/"/>
-=======
 		<outline text="Steve McConnell" title="Steve McConnell" description="" type="rss" version="RSS" htmlUrl="https://medium.com/@stevemcc?source=rss-bb47e8ceaa73------2" xmlUrl="https://medium.com/feed/@stevemcc"/>
->>>>>>> Stashed changes
 		<outline text="The Architect Elevator" title="The Architect Elevator" description="" type="rss" version="RSS" htmlUrl="https://architectelevator.com/" xmlUrl="https://architectelevator.com/feed.xml"/>
 		<outline text="The Loop" title="The Loop" description="" type="rss" version="RSS" htmlUrl="https://www.loopinsight.com/" xmlUrl="http://www.loopinsight.com/feed/"/>
 		<outline text="The Mozilla Blog" title="The Mozilla Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.mozilla.org/" xmlUrl="http://blog.mozilla.com/feed/"/>
