@@ -4,9 +4,9 @@
 	<head>
 		<title>Subscriptions-Feedly.opml</title>
 	</head>
-<body>
-	<outline text="Feeds" title="Feeds">
+	<body>
 		<outline text="2ality" title="2ality" description="" type="rss" version="RSS" htmlUrl="https://2ality.com/" xmlUrl="http://www.2ality.com/feeds/posts/default"/>
+		<outline text="A learning journal" title="A learning journal" description="" type="rss" version="RSS" htmlUrl="https://www.lpalmieri.com/" xmlUrl="https://www.lpalmieri.com/rss.xml"/>
 		<outline text="Accidentally in Code" title="Accidentally in Code" description="" type="rss" version="RSS" htmlUrl="https://cate.blog/" xmlUrl="https://cate.blog/feed/"/>
 		<outline text="All Things Distributed" title="All Things Distributed" description="" type="rss" version="RSS" htmlUrl="http://www.allthingsdistributed.com/" xmlUrl="https://www.allthingsdistributed.com/index.xml"/>
 		<outline text="And now it’s all this" title="And now it’s all this" description="" type="rss" version="RSS" htmlUrl="https://leancrew.com/all-this/" xmlUrl="http://www.leancrew.com/all-this/feed/"/>
@@ -53,6 +53,7 @@
 		<outline text="Ordina JWorks" title="Ordina JWorks" description="" type="rss" version="RSS" htmlUrl="https://ordina-jworks.github.io/" xmlUrl="https://ordina-jworks.github.io/feed.xml"/>
 		<outline text="Paul Graham: Essays" title="Paul Graham: Essays" description="" type="rss" version="RSS" htmlUrl="http://www.paulgraham.com/" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"/>
 		<outline text="Rubyland" title="Rubyland" description="" type="rss" version="RSS" htmlUrl="http://www.rubyland.news/" xmlUrl="http://rubyland.news/feed.rss"/>
+		<outline text="Rust Blog" title="Rust Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.rust-lang.org/" xmlUrl="http://blog.rust-lang.org/feed.xml"/>
 		<outline text="Scotch.io" title="Scotch.io" description="" type="rss" version="RSS" htmlUrl="http://scotch.io/feed" xmlUrl="https://scotch.io/feed"/>
 		<outline text="Several People Are Coding" title="Several People Are Coding" description="" type="rss" version="RSS" htmlUrl="https://slack.engineering/" xmlUrl="https://slack.engineering/feed"/>
 		<outline text="Signal v. Noise" title="Signal v. Noise" description="" type="rss" version="RSS" htmlUrl="https://m.signalvnoise.com/" xmlUrl="https://m.signalvnoise.com/feed/"/>
@@ -71,6 +72,5 @@
 		<outline text="Uber Engineering Blog" title="Uber Engineering Blog" description="" type="rss" version="RSS" htmlUrl="https://eng.uber.com/" xmlUrl="https://eng.uber.com/feed/"/>
 		<outline text="What's New on AWS" title="What's New on AWS" description="" type="rss" version="RSS" htmlUrl="https://aws.amazon.com/about-aws/whats-new/recent/" xmlUrl="http://aws.amazon.com/rss/whats-new.rss"/>
 		<outline text="xkcd" title="xkcd" description="" type="rss" version="RSS" htmlUrl="https://xkcd.com/" xmlUrl="http://xkcd.com/rss.xml"/>
-	</outline>
 	</body>
 </opml>
