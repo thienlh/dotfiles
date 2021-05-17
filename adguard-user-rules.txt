@@ -1,0 +1,5 @@
+nytimes.com###app > .nytcp-opt
+vnexpress.net##section.section.page-detail.top-detail > div > div.social_pin
+vnexpress.net#$#.container { background: white!important; }
+vnexpress.net#$#.page-detail.top-detail { background: white!important; }
+vnexpress.net#$#.wrap-main-nav.sticky .main-nav { background: white!important; }
