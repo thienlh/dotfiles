@@ -36,9 +36,9 @@ conditions = {
 ic = response['data']['current']['weather']['ic']
 
 status = case aqius
-         when 0..49
+         when 0..50
            '✓'
-         when 50..99
+         when 51..99
            '✗'
          else
            '✇'

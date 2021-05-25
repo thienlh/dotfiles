@@ -5,7 +5,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'date'
 
-# Class represents a single power-cutoff event
+# Class represents a single power cutoff
 class PowerCutoff
   attr_reader :date, :day_relative, :start_time, :end_time, :station_name, :reason
 
@@ -32,7 +32,7 @@ class PowerCutoff
     @start_time = text_at('td:nth-child(3)')
     @end_time = text_at('td:nth-child(4)')
     @station_name = text_at('td:nth-child(5)')
-    @reason = text_at('td:nth-child(6)')
+    @reason = text_at('td:nth-child(6)').gsub(/\R+/, ' ')
   end
 
   def find_power_cutoff_row(date, station_query)
@@ -75,4 +75,4 @@ next_three_days.each { |date| check_power_cut_off_for(date, station_query) }
 # Fall back if power-cutoff found
 puts '􀋥 | size=15'
 puts '---'
-puts 'No power-cutoff found for the next three days'
+puts 'No power cutoffs found for the next three days'
