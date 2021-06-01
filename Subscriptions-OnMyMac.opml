@@ -7,6 +7,7 @@
 <body>
 	<outline text="2ality" title="2ality" description="" type="rss" version="RSS" htmlUrl="" xmlUrl="http://www.2ality.com/feeds/posts/default"/>
 	<outline text="A learning journal" title="A learning journal" description="" type="rss" version="RSS" htmlUrl="https://www.lpalmieri.com/" xmlUrl="https://www.lpalmieri.com/rss.xml"/>
+	<outline text="A List Apart: The Full Feed" title="A List Apart: The Full Feed" description="" type="rss" version="RSS" htmlUrl="https://alistapart.com/" xmlUrl="https://alistapart.com/main/feed/"/>
 	<outline text="Accidentally in Code" title="Accidentally in Code" description="" type="rss" version="RSS" htmlUrl="https://cate.blog/" xmlUrl="https://cate.blog/feed/"/>
 	<outline text="All Things Distributed" title="All Things Distributed" description="" type="rss" version="RSS" htmlUrl="https://www.allthingsdistributed.com/" xmlUrl="https://www.allthingsdistributed.com/index.xml"/>
 	<outline text="And now it’s all this" title="And now it’s all this" description="" type="rss" version="RSS" htmlUrl="https://leancrew.com/all-this/" xmlUrl="http://www.leancrew.com/all-this/feed/"/>
@@ -14,8 +15,7 @@
 	<outline text="AWS Architecture Blog" title="AWS Architecture Blog" description="" type="rss" version="RSS" htmlUrl="https://aws.amazon.com/blogs/architecture/" xmlUrl="http://www.awsarchitectureblog.com/atom.xml"/>
 	<outline text="AWS News Blog" title="AWS News Blog" description="" type="rss" version="RSS" htmlUrl="" xmlUrl="http://aws.typepad.com/aws/atom.xml"/>
 	<outline text="B/R Football" title="B/R Football" description="" type="rss" version="RSS" htmlUrl="https://www.twitter.com/brfootball" xmlUrl="https://twitter.com/brfootball"/>
-	<outline text="Basic Apple Guy" title="Basic Apple Guy" description="" type="rss" version="RSS" htmlUrl="https://www.twitter.com/BasicAppleGuy" xmlUrl="https://twitter.com/BasicAppleGuy"/>
-	<outline text="Becky Hansmeyer" title="Becky Hansmeyer" description="" type="rss" version="RSS" htmlUrl="https://beckyhansmeyer.com/" xmlUrl="http://beckyhansmeyer.com/feed/"/>
+	<outline text="Basic Apple Guy" title="Basic Apple Guy" description="" type="rss" version="RSS" htmlUrl="https://basicappleguy.com/" xmlUrl="https://basicappleguy.com/basicappleblog?format=rss"/>
 	<outline text="Coding Horror" title="Coding Horror" description="" type="rss" version="RSS" htmlUrl="https://blog.codinghorror.com/" xmlUrl="http://feeds.feedburner.com/codinghorror/"/>
 	<outline text="Daring Fireball" title="Daring Fireball" description="" type="rss" version="RSS" htmlUrl="https://daringfireball.net/" xmlUrl="http://daringfireball.net/index.xml"/>
 	<outline text="David Heinemeier Hansson" title="David Heinemeier Hansson" description="" type="rss" version="RSS" htmlUrl="https://world.hey.com/dhh" xmlUrl="https://world.hey.com/dhh/feed.atom"/>
@@ -66,12 +66,13 @@
 	<outline text="The Architect Elevator" title="The Architect Elevator" description="" type="rss" version="RSS" htmlUrl="https://architectelevator.com/" xmlUrl="https://architectelevator.com/feed.xml"/>
 	<outline text="The IntelliJ IDEA Blog" title="The IntelliJ IDEA Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.jetbrains.com/" xmlUrl="http://blogs.jetbrains.com/idea/feed/"/>
 	<outline text="The Loop" title="The Loop" description="" type="rss" version="RSS" htmlUrl="https://www.loopinsight.com/" xmlUrl="http://www.loopinsight.com/feed/"/>
-	<outline text="The Mozilla Blog" title="The Mozilla Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.mozilla.org/" xmlUrl="http://blog.mozilla.com/feed/"/>
+	<outline text="The Mozilla Blog" title="The Mozilla Blog" description="" type="rss" version="RSS" htmlUrl="https://blog.mozilla.org/en/" xmlUrl="http://blog.mozilla.com/feed/"/>
 	<outline text="The Shape of Everything" title="The Shape of Everything" description="" type="rss" version="RSS" htmlUrl="https://shapeof.com/" xmlUrl="https://shapeof.com/feed.json"/>
 	<outline text="The Verge" title="The Verge" description="" type="rss" version="RSS" htmlUrl="https://www.theverge.com/" xmlUrl="http://www.theverge.com/rss/full.xml"/>
 	<outline text="Thien Le" title="Thien Le" description="" type="rss" version="RSS" htmlUrl="http://www.thien.fun/" xmlUrl="https://www.thien.fun/feed.xml"/>
 	<outline text="ThoughtWorks Insights" title="ThoughtWorks Insights" description="" type="rss" version="RSS" htmlUrl="" xmlUrl="https://www.thoughtworks.com/rss/insights.xml"/>
 	<outline text="Uber Engineering Blog" title="Uber Engineering Blog" description="" type="rss" version="RSS" htmlUrl="https://eng.uber.com/" xmlUrl="https://eng.uber.com/feed/"/>
+	<outline text="Wait But Why" title="Wait But Why" description="" type="rss" version="RSS" htmlUrl="https://waitbutwhy.com/" xmlUrl="https://waitbutwhy.com/feed"/>
 	<outline text="xkcd.com" title="xkcd.com" description="" type="rss" version="RSS" htmlUrl="https://xkcd.com/" xmlUrl="http://xkcd.com/rss.xml"/>
 	</body>
 </opml>
