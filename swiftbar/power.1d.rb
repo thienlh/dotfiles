@@ -1,4 +1,4 @@
-#!/usr/bin/env /Users/thienle/.rbenv/shims/ruby
+#!/usr/bin/env /opt/homebrew/opt/ruby/bin/ruby
 # frozen_string_literal: true
 
 require 'open-uri'
@@ -13,11 +13,8 @@ class PowerCutoff
     !@row.nil?
   end
 
-  def initialize(date, station_query)
-    find_power_cutoff_row(date, station_query)
-    return unless found?
-
-    set_field_values
+  def initialize(station_query)
+    find_power_cutoff_row(station_query)
   end
 
   private
@@ -26,18 +23,17 @@ class PowerCutoff
     @row.at_css(selector).text
   end
 
-  def set_field_values
+  def find_power_cutoff_row(station_query)
+    @row = Nokogiri::HTML(URI.open('https://ithongtin.com/lich-cup-dien/da-nang/cam-le'))
+                   .at_xpath("//*[@id='myTable']/tbody/tr[td[5]//text()[contains(., '#{station_query}')]]")
+    return unless found?
+
     @date = text_at('td:nth-child(2)')
     @day_relative = parse_relative_day(Date.parse(@date) - Date.today)
     @start_time = text_at('td:nth-child(3)')
     @end_time = text_at('td:nth-child(4)')
-    @station_name = text_at('td:nth-child(5)')
-    @reason = text_at('td:nth-child(6)').gsub(/\R+/, ' ')
-  end
-
-  def find_power_cutoff_row(date, station_query)
-    @row = Nokogiri::HTML(URI.open("https://lichcatdien.info/lich-cup-dien-dien-luc-cam-le/ngay-#{date}.html"))
-                   .at_xpath("//*[@id='myTable']/tbody/tr[td[5]//text()[contains(., '#{station_query}')]]")
+    @station_name = text_at('td:nth-child(6)')
+    @reason = text_at('td:nth-child(7)').gsub(/\R+/, ' ')
   end
 
   def parse_relative_day(num_of_day)
@@ -53,14 +49,14 @@ class PowerCutoff
 end
 
 def put_power_cutoff_info(args)
-  puts "􀋩 #{args.day_relative} | size=15"
+  puts ":lightbulb.slash.fill: #{args.day_relative} | size=15"
   puts '---'
   puts "Power cut-off for #{args.station_name} on #{args.date} from #{args.start_time} to #{args.end_time}"
   puts "Reason: #{args.reason}"
 end
 
-def check_power_cut_off_for(date, station_query)
-  power_cutoff = PowerCutoff.new(date, station_query)
+def check_power_cut_off_for(station_query)
+  power_cutoff = PowerCutoff.new(station_query)
   return unless power_cutoff.found?
 
   put_power_cutoff_info(power_cutoff)
@@ -69,10 +65,9 @@ def check_power_cut_off_for(date, station_query)
 end
 
 station_query = ENV['STATION_QUERY'] || 'Hòa Cầm 4'
-@today = Date.today
-next_three_days = [@today, @today + 1, @today + 2, @today + 3]
-next_three_days.each { |date| check_power_cut_off_for(date, station_query) }
-# Fall back if power-cutoff found
-puts '􀋥 | size=15'
+check_power_cut_off_for(station_query)
+
+# Fall back if no power-cutoff found
+puts ':lightbulb: | size=15'
 puts '---'
 puts 'No power cutoffs found for the next three days'
