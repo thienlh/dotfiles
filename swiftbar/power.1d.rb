@@ -7,7 +7,7 @@ require 'date'
 
 # Class represents a single power cutoff
 class PowerCutoff
-  attr_reader :date, :day_relative, :start_time, :end_time, :station_name, :reason
+  attr_reader :url, :date, :day_relative, :start_time, :end_time, :station_name, :reason
 
   def found?
     !@row.nil?
@@ -24,7 +24,8 @@ class PowerCutoff
   end
 
   def find_power_cutoff_row(station_query)
-    @row = Nokogiri::HTML(URI.open('https://ithongtin.com/lich-cup-dien/da-nang/cam-le'))
+    @url = 'https://ithongtin.com/lich-cup-dien/da-nang/cam-le'
+    @row = Nokogiri::HTML(URI.open(@url))
                    .at_xpath("//*[@id='myTable']/tbody/tr[td[5]//text()[contains(., '#{station_query}')]]")
     return unless found?
 
@@ -33,7 +34,7 @@ class PowerCutoff
     @start_time = text_at('td:nth-child(3)')
     @end_time = text_at('td:nth-child(4)')
     @station_name = text_at('td:nth-child(6)')
-    @reason = text_at('td:nth-child(7)').gsub(/\R+/, ' ')
+    @reason = text_at('td:nth-child(7)').gsub(/\R+/, '\n ')
   end
 
   def parse_relative_day(num_of_day)
@@ -51,8 +52,8 @@ end
 def put_power_cutoff_info(args)
   puts ":lightbulb.slash.fill: #{args.day_relative} | size=15"
   puts '---'
-  puts "Power cut-off for #{args.station_name} on #{args.date} from #{args.start_time} to #{args.end_time}"
-  puts "Reason: #{args.reason}"
+  puts "Power cut-off for #{args.station_name} on #{args.date} from #{args.start_time} to #{args.end_time} | href=#{args.url}"
+  puts args.reason.to_s
 end
 
 def check_power_cut_off_for(station_query)
@@ -64,10 +65,10 @@ def check_power_cut_off_for(station_query)
   exit
 end
 
-station_query = ENV['STATION_QUERY'] || 'Hòa Cầm 4'
+station_query = ENV['STATION_QUERY'] || 'Hoà Cầm 4'
 check_power_cut_off_for(station_query)
 
 # Fall back if no power-cutoff found
 puts ':lightbulb: | size=15'
 puts '---'
-puts 'No power cutoffs found for the next three days'
+puts 'No power cutoffs found for the next seven days | href="https://ithongtin.com/lich-cup-dien/da-nang/cam-le"'
