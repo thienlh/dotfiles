@@ -15,13 +15,7 @@ class PowerCutoff
   end
 
   def initialize(customer_code)
-    find_power_cutoff_row(customer_code)
-  end
-
-  private
-
-  def find_power_cutoff_row(customer_code)
-    @row = request(customer_code)
+    @row = find_power_cutoff_row(customer_code)
     return unless found?
 
     @date = Date.parse(@row['fromDate'])
@@ -33,7 +27,9 @@ class PowerCutoff
     @reason = @row['reason']
   end
 
-  def request(customer_code)
+  private
+
+  def find_power_cutoff_row(customer_code)
     url = URI.parse("https://cskh-staging-api.cpc.vn:8080/api/remote/outages/#{customer_code}?viewReason=true")
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
